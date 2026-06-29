@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U.S. Citizenship Test — Study App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>U.S. Citizenship Test — 2025</h1>
+  <p class="subtitle">128 Official USCIS Civics Questions</p>
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tab-flashcard" onclick="setMode('flashcard')">Flashcards</button>
+    <button class="mode-tab" id="tab-browse" onclick="setMode('browse')">Browse All</button>
+  </div>
+  <div class="lang-row">
+    <label for="lang-select">&#127758; Language:</label>
+    <select id="lang-select" onchange="setLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="hi">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)</option>
+      <option value="es">Espa&#241;ol (Spanish)</option>
+      <option value="zh">&#20013;&#25991; (Chinese)</option>
+      <option value="vi">Ti&#7871;ng Vi&#7879;t (Vietnamese)</option>
+      <option value="ko">&#54620;&#44397;&#50612; (Korean)</option>
+      <option value="tl">Tagalog</option>
+      <option value="pt">Portugu&#234;s (Portuguese)</option>
+      <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Arabic)</option>
+    </select>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <label>Filter:</label>
+  <button class="filter-btn active" onclick="setFilter('all', event)">All 128</button>
+  <button class="filter-btn senior-btn" onclick="setFilter('senior', event)">&#9733; Senior (20 Questions)</button>
+  <button class="filter-btn starred-filter-btn" onclick="setFilter('starred', event)">&#9873; Flagged for Review</button>
+</div>
+
+<main>
+  <!-- ── FLASHCARD MODE ── -->
+  <div id="view-flashcard">
+    <div class="progress-row">
+      <span class="progress-label" id="progress-label">1 / 128</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="shuffle-row">
+      <button class="shuffle-btn" onclick="shuffleDeck()">&#8635; Shuffle</button>
+      <button class="shuffle-btn" onclick="resetDeck()">Reset Order</button>
+    </div>
+
+    <div class="translate-status" id="translate-status" style="display:none">Translating&#8230;</div>
+
+    <div class="flashcard-wrap" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <!-- FRONT -->
+        <div class="card-face card-front">
+          <div id="card-senior-badge"></div>
+          <div class="card-number" id="card-number">#1</div>
+          <p class="card-question" id="card-question">Loading&#8230;</p>
+          <p class="card-question-secondary" id="card-question-en" style="display:none"></p>
+          <p class="card-hint">Tap card to see the answer</p>
+          <button class="audio-btn" onclick="event.stopPropagation(); speakQuestion()">&#128266; Read Question</button>
+        </div>
+        <!-- BACK -->
+        <div class="card-face card-back">
+          <div class="card-tag" id="card-back-tag">Acceptable Answers</div>
+          <div class="card-number" id="card-number-back">#1</div>
+          <ul class="card-answers" id="card-answers"></ul>
+          <ul class="card-answers card-answers-en" id="card-answers-en" style="display:none"></ul>
+          <button class="audio-btn audio-btn-back" onclick="event.stopPropagation(); speakAnswer()">&#128266; Read Answer</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn" id="btn-prev" onclick="prevCard()">&#8592; Prev</button>
+      <span class="nav-counter" id="nav-counter">1 / 128</span>
+      <button class="nav-btn" id="btn-stop" onclick="stopSpeech()">&#9646;&#9646; Stop</button>
+      <button class="nav-btn primary" id="btn-next" onclick="nextCard()">Next &#8594;</button>
+    </div>
+
+    <div class="auto-read-row">
+      <label class="auto-read-label">
+        <input type="checkbox" id="auto-read" />
+        Auto-read question when card changes
+      </label>
+    </div>
+
+    <div class="star-row">
+      <button class="star-btn" id="star-btn" onclick="toggleStar()">
+        <span id="star-icon">&#9873;</span> Flag for Review
+      </button>
+    </div>
+  </div>
+
+  <!-- ── BROWSE MODE ── -->
+  <div id="view-browse" style="display:none">
+    <div class="browse-list" id="browse-list"></div>
+  </div>
+</main>
+
+<script src="questions.js"></script>
+<script>
+  // ── iOS Audio Unlock ───────────────────────────────────────────────────────
+  // iOS 18 and below require the audio system to be activated by a real user
+  // touch before speechSynthesis.speak() will do anything. A silent empty
+  // utterance on the first tap unlocks it for the rest of the session.
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.getVoices();
+    document.addEventListener('touchstart', function unlock() {
+      const u = new SpeechSynthesisUtterance('');
+      u.volume = 0;
+      window.speechSynthesis.speak(u);
+      window.speechSynthesis.cancel();
+      document.removeEventListener('touchstart', unlock);
+    }, { once: true, passive: true });
+  }
+
+  // ── Languages ──────────────────────────────────────────────────────────────
+  const LANGUAGES = {
+    en: { name: 'English',             tts: 'en-US' },
+    hi: { name: 'Hindi',               tts: 'hi-IN' },
+    es: { name: 'Spanish',             tts: 'es-ES' },
+    zh: { name: 'Chinese (Simplified)',tts: 'zh-CN' },
+    vi: { name: 'Vietnamese',          tts: 'vi-VN' },
+    ko: { name: 'Korean',              tts: 'ko-KR' },
+    tl: { name: 'Tagalog',             tts: 'fil-PH' },
+    pt: { name: 'Portuguese',          tts: 'pt-BR' },
+    ar: { name: 'Arabic',              tts: 'ar-SA' },
+  };
+
+  let currentLang = 'en';
+  const cache = {}; // "lang|text" → translated string
+  let translateVersion = 0; // prevents stale async results from overwriting newer cards
+
+  async function translate(text, lang) {
+    if (lang === 'en') return text;
+    const key = lang + '|' + text;
+    if (cache[key]) return cache[key];
+    const url = 'https://api.mymemory.translated.net/get?q=' +
+                encodeURIComponent(text) + '&langpair=en|' + lang +
+                '&de=akteam1868@gmail.com';
+    const res = await fetch(url);
+    const data = await res.json();
+    const result = data.responseData.translatedText;
+    if (!result || result === '?' || result.startsWith('MYMEMORY WARNING')) {
+      throw new Error('Translation unavailable');
+    }
+    cache[key] = result;
+    return result;
+  }
+
+  async function setLanguage(lang) {
+    currentLang = lang;
+    if (mode === 'flashcard') {
+      renderCard();       // resets to English immediately
+      translateCurrentCard(translateVersion);
+    }
+  }
+
+  // ── Starred (persisted to localStorage) ───────────────────────────────────
+  let starred = loadStarred();
+
+  function loadStarred() {
+    try {
+      const s = localStorage.getItem('uscis-starred');
+      return s ? new Set(JSON.parse(s)) : new Set();
+    } catch { return new Set(); }
+  }
+
+  function saveStarred() {
+    localStorage.setItem('uscis-starred', JSON.stringify([...starred]));
+  }
+
+  function toggleStar() {
+    if (!deck[cardIndex]) return;
+    const id = deck[cardIndex].id;
+    const wasStarred = starred.has(id);
+    if (wasStarred) starred.delete(id); else starred.add(id);
+    saveStarred();
+    updateStarBtn();
+    // If we're currently viewing the starred filter and just removed this card, rebuild deck
+    if (filter === 'starred' && wasStarred) {
+      deck = QUESTIONS.filter(q => starred.has(q.id));
+      cardIndex = Math.min(cardIndex, Math.max(0, deck.length - 1));
+      renderCard();
+      translateCurrentCard(translateVersion);
+    }
+  }
+
+  function updateStarBtn() {
+    if (!deck[cardIndex]) return;
+    const isStarred = starred.has(deck[cardIndex].id);
+    const btn = document.getElementById('star-btn');
+    const icon = document.getElementById('star-icon');
+    if (!btn || !icon) return;
+    icon.textContent = isStarred ? '⚑' : '⚐';
+    btn.classList.toggle('starred', isStarred);
+    btn.querySelector('span').nextSibling.textContent = isStarred ? ' Flagged' : ' Flag for Review';
+  }
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  let mode = 'flashcard';
+  let filter = 'all';
+  let deck = [];
+  let cardIndex = 0;
+  let flipped = false;
+
+  // ── Speech ─────────────────────────────────────────────────────────────────
+  let _iosSpeechTimer = null;
+
+  function speak(text, lang) {
+    const code = LANGUAGES[lang || currentLang]?.tts || 'en-US';
+
+    // iOS fix 1: only cancel if already speaking — calling cancel() then speak()
+    // immediately causes iOS to silently drop the request
+    if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+
+    clearInterval(_iosSpeechTimer);
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = code;
+    u.rate = 0.85;
+
+    // iOS fix 2: iOS pauses speech synthesis after ~15 seconds and never resumes.
+    // Nudging pause/resume every 10s keeps it alive for long answers.
+    _iosSpeechTimer = setInterval(() => {
+      if (!window.speechSynthesis.speaking) {
+        clearInterval(_iosSpeechTimer);
+      } else {
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+      }
+    }, 10000);
+
+    u.onend = u.onerror = () => clearInterval(_iosSpeechTimer);
+    window.speechSynthesis.speak(u);
+  }
+
+  function speakQuestion() {
+    const el = document.getElementById('card-question');
+    if (el && el.textContent) speak(el.textContent);
+  }
+
+  function speakAnswer() {
+    const ul = document.getElementById('card-answers');
+    if (!ul) return;
+    const text = Array.from(ul.querySelectorAll('li')).map(li => li.textContent).join('. ');
+    speak(text);
+  }
+
+  function stopSpeech() {
+    clearInterval(_iosSpeechTimer);
+    window.speechSynthesis.cancel();
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  applyFilter('all');
+
+  // ── Filter ─────────────────────────────────────────────────────────────────
+  function setFilter(f, e) {
+    filter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (e && e.currentTarget) e.currentTarget.classList.add('active');
+    applyFilter(f);
+  }
+
+  function applyFilter(f) {
+    if (f === 'all')           deck = [...QUESTIONS];
+    else if (f === 'senior')   deck = QUESTIONS.filter(q => q.senior);
+    else if (f === 'starred')  deck = QUESTIONS.filter(q => starred.has(q.id));
+    else                       deck = QUESTIONS.filter(q => q.category === f);
+    cardIndex = 0;
+    flipped = false;
+    if (mode === 'flashcard') {
+      renderCard();
+      translateCurrentCard(translateVersion);
+    } else {
+      renderBrowse();
+    }
+  }
+
+  // ── Mode ───────────────────────────────────────────────────────────────────
+  function setMode(m) {
+    mode = m;
+    document.getElementById('view-flashcard').style.display = m === 'flashcard' ? '' : 'none';
+    document.getElementById('view-browse').style.display     = m === 'browse'    ? '' : 'none';
+    document.getElementById('tab-flashcard').classList.toggle('active', m === 'flashcard');
+    document.getElementById('tab-browse').classList.toggle('active', m === 'browse');
+    if (m === 'browse') renderBrowse();
+    else { flipped = false; renderCard(); translateCurrentCard(translateVersion); }
+  }
+
+  // ── Flashcard (sync — English only) ────────────────────────────────────────
+  function renderCard() {
+    stopSpeech();
+    translateVersion++; // invalidate any in-flight translation for the previous card
+
+    const qEl       = document.getElementById('card-question');
+    const qEnEl     = document.getElementById('card-question-en');
+    const answersEl = document.getElementById('card-answers');
+    const answersEnEl = document.getElementById('card-answers-en');
+
+    if (deck.length === 0) {
+      qEl.textContent = 'No questions match this filter.';
+      qEnEl.style.display = 'none';
+      answersEl.innerHTML = '';
+      answersEnEl.style.display = 'none';
+      document.getElementById('card-number').textContent = '';
+      document.getElementById('card-number-back').textContent = '';
+      document.getElementById('card-senior-badge').innerHTML = '';
+      document.getElementById('nav-counter').textContent = '0 / 0';
+      document.getElementById('progress-label').textContent = '0 / 0';
+      document.getElementById('progress-fill').style.width = '0%';
+      document.getElementById('btn-prev').disabled = true;
+      document.getElementById('btn-next').disabled = true;
+      return;
+    }
+
+    const q = deck[cardIndex];
+    const total = deck.length;
+
+    // Un-flip
+    document.getElementById('flashcard').classList.remove('flipped');
+    flipped = false;
+
+    // Reset to English
+    document.getElementById('card-number').textContent = '#' + q.id;
+    document.getElementById('card-number-back').textContent = '#' + q.id;
+    document.getElementById('card-senior-badge').innerHTML =
+      q.senior ? '<span class="senior-badge">★ Senior Question</span>' : '';
+    qEl.textContent = q.question;
+    qEnEl.style.display = 'none';
+    qEnEl.textContent = '';
+
+    answersEl.innerHTML = '';
+    q.answers.forEach(a => {
+      const li = document.createElement('li');
+      li.textContent = a;
+      answersEl.appendChild(li);
+    });
+    answersEnEl.innerHTML = '';
+    answersEnEl.style.display = 'none';
+
+    // Update back tag with language name
+    const backTag = document.getElementById('card-back-tag');
+    backTag.textContent = currentLang === 'en'
+      ? 'Acceptable Answers'
+      : 'Acceptable Answers (' + LANGUAGES[currentLang].name + ')';
+
+    const pos = cardIndex + 1;
+    document.getElementById('nav-counter').textContent = pos + ' / ' + total;
+    document.getElementById('progress-label').textContent = pos + ' / ' + total;
+    document.getElementById('progress-fill').style.width = (pos / total * 100) + '%';
+    document.getElementById('btn-prev').disabled = cardIndex === 0;
+    document.getElementById('btn-next').disabled = cardIndex === total - 1;
+    updateStarBtn();
+  }
+
+  // ── Translation (async — updates card after sync render) ───────────────────
+  async function translateCurrentCard(myVersion) {
+    if (currentLang === 'en' || !deck[cardIndex]) return;
+    const q = deck[cardIndex];
+
+    const statusEl    = document.getElementById('translate-status');
+    const qEl         = document.getElementById('card-question');
+    const qEnEl       = document.getElementById('card-question-en');
+    const answersEl   = document.getElementById('card-answers');
+    const answersEnEl = document.getElementById('card-answers-en');
+
+    statusEl.style.display = 'block';
+    statusEl.textContent = 'Translating…';
+
+    try {
+      const tQ = await translate(q.question, currentLang);
+      if (translateVersion !== myVersion) return; // card changed while we were translating
+
+      qEl.textContent = tQ;
+      qEnEl.textContent = q.question;
+      qEnEl.style.display = '';
+
+      const tAnswers = await Promise.all(q.answers.map(a => translate(a, currentLang)));
+      if (translateVersion !== myVersion) return;
+
+      answersEl.innerHTML = '';
+      tAnswers.forEach(a => {
+        const li = document.createElement('li');
+        li.textContent = a;
+        answersEl.appendChild(li);
+      });
+
+      answersEnEl.innerHTML = '';
+      q.answers.forEach(a => {
+        const li = document.createElement('li');
+        li.textContent = a;
+        answersEnEl.appendChild(li);
+      });
+      answersEnEl.style.display = '';
+
+      statusEl.style.display = 'none';
+
+      if (document.getElementById('auto-read').checked) speak(tQ);
+
+    } catch (err) {
+      if (translateVersion !== myVersion) return;
+      statusEl.textContent = 'Translation unavailable — showing English';
+      setTimeout(() => { statusEl.style.display = 'none'; }, 2500);
+    }
+  }
+
+  // ── Navigation ─────────────────────────────────────────────────────────────
+  function flipCard() {
+    if (deck.length === 0) return;
+    flipped = !flipped;
+    document.getElementById('flashcard').classList.toggle('flipped', flipped);
+  }
+
+  function prevCard() {
+    if (cardIndex > 0) {
+      cardIndex--;
+      renderCard();
+      translateCurrentCard(translateVersion);
+    }
+  }
+
+  function nextCard() {
+    if (cardIndex < deck.length - 1) {
+      cardIndex++;
+      renderCard();
+      translateCurrentCard(translateVersion);
+    }
+  }
+
+  function shuffleDeck() {
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    cardIndex = 0;
+    renderCard();
+    translateCurrentCard(translateVersion);
+  }
+
+  function resetDeck() { applyFilter(filter); }
+
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (mode !== 'flashcard') return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextCard();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevCard();
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
+  });
+
+  // Auto-read on card render (English path — translation path handles its own)
+  const origRenderCard = renderCard;
+  // (auto-read for English is handled below renderCard when lang=en)
+  document.addEventListener('change', e => {
+    if (e.target.id === 'auto-read' && e.target.checked && currentLang === 'en') {
+      speakQuestion();
+    }
+  });
+
+  // ── Browse mode ────────────────────────────────────────────────────────────
+  function renderBrowse() {
+    const container = document.getElementById('browse-list');
+    container.innerHTML = '';
+
+    if (deck.length === 0) {
+      container.innerHTML = '<div class="empty-state"><p>No questions match this filter.</p></div>';
+      return;
+    }
+
+    deck.forEach(q => {
+
+      const item = document.createElement('div');
+      item.className = 'browse-item' + (q.senior ? ' is-senior' : '');
+
+      const header = document.createElement('div');
+      header.className = 'browse-item-header';
+
+      const num = document.createElement('div');
+      num.className = 'browse-num';
+      num.textContent = q.id;
+
+      const qText = document.createElement('div');
+      qText.className = 'browse-question';
+      qText.textContent = q.question + (q.senior ? ' ★' : '');
+
+      // Speaker button
+      const speakBtn = document.createElement('button');
+      speakBtn.className = 'browse-speak-btn';
+      speakBtn.textContent = '🔊';
+      speakBtn.title = 'Read question';
+      // iOS requires speak() to be called synchronously within the tap handler.
+      // Use the cached translation if available, otherwise fall back to English.
+      speakBtn.onclick = () => {
+        const key = currentLang + '|' + q.question;
+        const text = (currentLang === 'en' || !cache[key]) ? q.question : cache[key];
+        speak(text);
+      };
+
+      // Star/flag button
+      const browseStarBtn = document.createElement('button');
+      browseStarBtn.className = 'browse-star-btn' + (starred.has(q.id) ? ' starred' : '');
+      browseStarBtn.textContent = starred.has(q.id) ? '⚑' : '⚐';
+      browseStarBtn.title = starred.has(q.id) ? 'Remove flag' : 'Flag for review';
+      browseStarBtn.onclick = () => {
+        const isStarred = starred.has(q.id);
+        if (isStarred) starred.delete(q.id); else starred.add(q.id);
+        saveStarred();
+        browseStarBtn.textContent = starred.has(q.id) ? '⚑' : '⚐';
+        browseStarBtn.title = starred.has(q.id) ? 'Remove flag' : 'Flag for review';
+        browseStarBtn.classList.toggle('starred', starred.has(q.id));
+        if (filter === 'starred') renderBrowse();
+      };
+
+      header.appendChild(num);
+      header.appendChild(qText);
+      header.appendChild(speakBtn);
+      header.appendChild(browseStarBtn);
+
+      const answersWrap = document.createElement('div');
+      answersWrap.className = 'browse-answers';
+
+      const label = document.createElement('p');
+      label.textContent = 'Acceptable answers';
+      answersWrap.appendChild(label);
+
+      const ul = document.createElement('ul');
+      q.answers.forEach(a => {
+        const li = document.createElement('li');
+        li.textContent = a;
+        ul.appendChild(li);
+      });
+      answersWrap.appendChild(ul);
+
+      item.appendChild(header);
+      item.appendChild(answersWrap);
+      container.appendChild(item);
+    });
+  }
+</script>
+</body>
+</html>
