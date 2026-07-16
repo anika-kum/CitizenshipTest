@@ -19,7 +19,27 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         // instead of the unreliable Web Speech API when running in the app.
         config.userContentController.add(self, name: "speech")
 
+        // WebKit blocks fetch() on file:// URLs, so the web side can't read
+        // the bundled gov_data.json itself. Inject it as a global instead;
+        // loadGovData() falls back to it when every network source fails.
+        // The file is scraper output copied fresh into the bundle each build.
+        if let dataURL = Bundle.main.url(forResource: "gov_data", withExtension: "json"),
+           let json = try? String(contentsOf: dataURL, encoding: .utf8) {
+            let script = WKUserScript(
+                source: "window.GOV_DATA_BUNDLED = \(json);",
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true
+            )
+            config.userContentController.addUserScript(script)
+        }
+
         webView = WKWebView(frame: .zero, configuration: config)
+        #if DEBUG
+        // Required since iOS 16.4 for Safari Web Inspector to see this view.
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
+        #endif
         webView.isOpaque = false
         webView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.94, alpha: 1) // matches --offwhite
         webView.scrollView.contentInsetAdjustmentBehavior = .automatic

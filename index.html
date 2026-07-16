@@ -236,6 +236,12 @@
         console.log('✗ Failed to load gov_data from', url, ':', e.message);
       }
     }
+    // Offline: fall back to the snapshot the iOS app injects from its bundle
+    // (scraper output bundled at build time — see WebViewController.swift).
+    if (!govData && window.GOV_DATA_BUNDLED) {
+      govData = window.GOV_DATA_BUNDLED;
+      console.log('✓ Using bundled gov_data snapshot from', govData.updated);
+    }
     applyGovData();
   }
 
