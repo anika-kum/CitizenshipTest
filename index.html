@@ -59,6 +59,15 @@
       <option value="tl">Tagalog</option>
       <option value="pt">Portugu&#234;s (Portuguese)</option>
       <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Arabic)</option>
+      <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+      <option value="gu">ગુજરાતી (Gujarati)</option>
+      <option value="ur">اردو (Urdu)</option>
+      <option value="bn">বাংলা (Bengali)</option>
+      <option value="fr">Français (French)</option>
+      <option value="ta">தமிழ் (Tamil)</option>
+      <option value="fa">فارسی (Persian)</option>
+      <option value="ru">Русский (Russian)</option>
+      <option value="ht">Kreyòl Ayisyen (Haitian Creole)</option>
     </select>
   </div>
   <div class="lang-row">
@@ -177,15 +186,37 @@
     'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'
   };
 
+  // English templates for dynamic-answer sentences. Translation packs carry
+  // the same keys in their _ui section; {name} is substituted at render time.
+  const MSG = {
+    offline: 'Live data unavailable — please connect to the internet and reopen the app',
+    repsNote: 'Your answer depends on your congressional district — find yours at house.gov:',
+    dcNoSenators: 'D.C. has no U.S. senators.',
+    dcNoGovernor: 'D.C. does not have a governor.',
+    dcMayor: 'The mayor of D.C. is {name}.',
+    dcCapital: 'D.C. is not a state and does not have a capital. (D.C. itself is the capital of the United States.)'
+  };
+
+  // Dynamic answers are stored as metadata ({key} = translatable template,
+  // {name} = proper noun, never translated) and rendered to strings in
+  // whichever language is active. ui = pack._ui, or null for English.
+  function renderAnswerMeta(meta, ui) {
+    return meta.map(m => {
+      const tmpl = m.key ? ((ui && ui[m.key]) || MSG[m.key]) : '{name}';
+      return tmpl.replace('{name}', m.name || '');
+    });
+  }
+
   // Q62 (state capital) is filled from the fixed map — no network involved,
   // so it runs synchronously at startup, before the .gov data fetch resolves.
   function applyStateCapital() {
     const state = localStorage.getItem('uscis-state');
     const q = QUESTIONS.find(q => q.dynamic === 'capital');
     if (!q || !state) return;
-    q.answers = state === 'District of Columbia'
-      ? ['D.C. is not a state and does not have a capital. (D.C. itself is the capital of the United States.)']
-      : [STATE_CAPITALS[state]];
+    q.tMeta = state === 'District of Columbia'
+      ? [{ key: 'dcCapital' }]
+      : [{ name: STATE_CAPITALS[state] }];
+    q.answers = renderAnswerMeta(q.tMeta, null);
   }
 
   async function loadGovData() {
@@ -204,44 +235,45 @@
     // Onboarding guarantees a state is chosen before any card is visible;
     // if it is somehow missing, the onboarding overlay is covering the screen.
     const state = localStorage.getItem('uscis-state');
-    const offline = ['Live data unavailable — please connect to the internet and reopen the app'];
+    const offline = [{ key: 'offline' }];
 
     applyStateCapital(); // capital needs no network — fixed in-app map
 
     QUESTIONS.forEach(q => {
       if (!q.dynamic || q.dynamic === 'capital') return;
 
-      if (!govData) { q.answers = offline; return; }
-
-      switch (q.dynamic) {
-        case 'president':     q.answers = [govData.president]; break;
-        case 'vicePresident': q.answers = [govData.vicePresident]; break;
-        case 'speaker':       q.answers = [govData.speaker]; break;
-        case 'chiefJustice':  q.answers = [govData.chiefJustice]; break;
+      if (!govData) { q.tMeta = offline; }
+      else switch (q.dynamic) {
+        case 'president':     q.tMeta = [{ name: govData.president }]; break;
+        case 'vicePresident': q.tMeta = [{ name: govData.vicePresident }]; break;
+        case 'speaker':       q.tMeta = [{ name: govData.speaker }]; break;
+        case 'chiefJustice':  q.tMeta = [{ name: govData.chiefJustice }]; break;
         case 'senators':
           if (!state) break;
           // D.C. residents answer that D.C. has no U.S. senators
-          q.answers = govData.senators[state] ||
-            (state === 'District of Columbia' ? ['D.C. has no U.S. senators.'] : offline);
+          q.tMeta = govData.senators[state]
+            ? govData.senators[state].map(n => ({ name: n }))
+            : (state === 'District of Columbia' ? [{ key: 'dcNoSenators' }] : offline);
           break;
         case 'governors':
           if (!state) break;
           // D.C. residents answer that D.C. does not have a governor
-          q.answers = state === 'District of Columbia'
-            ? ['D.C. does not have a governor.' + (govData.governors[state] ? ' (The mayor is ' + govData.governors[state] + '.)' : '')]
-            : (govData.governors[state] ? [govData.governors[state]] : offline);
+          q.tMeta = state === 'District of Columbia'
+            ? [{ key: 'dcNoGovernor' }].concat(
+                govData.governors[state] ? [{ key: 'dcMayor', name: govData.governors[state] }] : [])
+            : (govData.governors[state] ? [{ name: govData.governors[state] }] : offline);
           break;
         case 'representatives': {
           if (!state) break;
           const reps = govData.representatives[state];
-          if (!reps) { q.answers = offline; break; }
-          q.answers = reps.length === 1
-            ? [reps[0].name]
-            : ['Your answer depends on your congressional district — find yours at house.gov:']
-                .concat(reps.map(r => r.name + ' (' + r.district + ' district)'));
+          q.tMeta = !reps ? offline
+            : reps.length === 1 ? [{ name: reps[0].name }]
+            : [{ key: 'repsNote' }].concat(
+                reps.map(r => ({ name: r.name + ' (' + r.district + ' district)' })));
           break;
         }
       }
+      if (q.tMeta) q.answers = renderAnswerMeta(q.tMeta, null);
     });
 
     // Refresh whatever is on screen
@@ -309,32 +341,51 @@
     ko: { name: 'Korean',              tts: 'ko-KR' },
     tl: { name: 'Tagalog',             tts: 'fil-PH' },
     pt: { name: 'Portuguese',          tts: 'pt-BR' },
-    ar: { name: 'Arabic',              tts: 'ar-SA' },
+    ar: { name: 'Arabic',              tts: 'ar-SA', rtl: true },
+    pa: { name: 'Punjabi',             tts: 'pa-IN' },
+    gu: { name: 'Gujarati',            tts: 'gu-IN' },
+    ur: { name: 'Urdu',                tts: 'ur-PK', rtl: true },
+    bn: { name: 'Bengali',             tts: 'bn-IN' },
+    fr: { name: 'French',              tts: 'fr-FR' },
+    ta: { name: 'Tamil',               tts: 'ta-IN' },
+    fa: { name: 'Persian (Farsi)',     tts: 'fa-IR', rtl: true },
+    ru: { name: 'Russian',             tts: 'ru-RU' },
+    ht: { name: 'Haitian Creole',      tts: 'ht-HT' },
   };
 
   let currentLang = 'en';
-  const cache = {}; // "lang|text" → translated string
-  let translateVersion = 0; // prevents stale async results from overwriting newer cards
+  let translateVersion = 0; // prevents stale async pack loads from overwriting newer cards
 
-  async function translate(text, lang) {
-    if (lang === 'en') return text;
-    const key = lang + '|' + text;
-    if (cache[key]) return cache[key];
-    const url = 'https://api.mymemory.translated.net/get?q=' +
-                encodeURIComponent(text) + '&langpair=en|' + lang +
-                '&de=akteam1868@gmail.com';
-    const res = await fetch(url);
-    const data = await res.json();
-    const result = data.responseData.translatedText;
-    if (!result || result === '?' || result.startsWith('MYMEMORY WARNING')) {
-      throw new Error('Translation unavailable');
-    }
-    cache[key] = result;
-    return result;
+  // ── Translation packs ────────────────────────────────────────────────────
+  // All translations are generated and reviewed ahead of time and shipped as
+  // static files (translations/<lang>.js) — no translation API is called at
+  // runtime, so there is no rate cap and translation works offline.
+  // Each file calls registerTranslations(lang, pack) when it loads.
+  // pack format: { "_ui": {...}, "<questionId>": { q: "...", a: [...]|null } }
+  // a: null marks dynamic questions — officials' names are never translated.
+  const TRANSLATION_PACKS = {}; // lang → pack object (or null if load failed)
+  const _packWaiters = {};
+
+  function registerTranslations(lang, pack) {
+    TRANSLATION_PACKS[lang] = pack;
+    (_packWaiters[lang] || []).forEach(cb => cb(pack));
+    delete _packWaiters[lang];
   }
 
-  async function setLanguage(lang) {
+  function loadPack(lang, cb) {
+    if (TRANSLATION_PACKS[lang] !== undefined) { cb(TRANSLATION_PACKS[lang]); return; }
+    const alreadyLoading = !!_packWaiters[lang];
+    (_packWaiters[lang] = _packWaiters[lang] || []).push(cb);
+    if (alreadyLoading) return;
+    const s = document.createElement('script');
+    s.src = 'translations/' + lang + '.js';
+    s.onerror = () => registerTranslations(lang, null); // fall back to English
+    document.head.appendChild(s);
+  }
+
+  function setLanguage(lang) {
     currentLang = lang;
+    if (lang !== 'en') loadPack(lang, () => {}); // start loading immediately
     if (mode === 'flashcard') {
       renderCard();       // resets to English immediately
       translateCurrentCard(translateVersion);
@@ -515,10 +566,12 @@
     document.getElementById('card-senior-badge').innerHTML =
       q.senior ? '<span class="senior-badge">★ Senior Question</span>' : '';
     qEl.textContent = q.question;
+    qEl.dir = 'ltr';
     qEnEl.style.display = 'none';
     qEnEl.textContent = '';
 
     answersEl.innerHTML = '';
+    answersEl.dir = 'ltr';
     q.answers.forEach(a => {
       const li = document.createElement('li');
       li.textContent = a;
@@ -542,8 +595,17 @@
     updateStarBtn();
   }
 
-  // ── Translation (async — updates card after sync render) ───────────────────
-  async function translateCurrentCard(myVersion) {
+  // ── Translation (pack lookup — no API, no cap, works offline) ──────────────
+  // Returns the translated answers for a question, falling back to English.
+  // Dynamic questions translate their template sentences via pack._ui while
+  // officials' names pass through untouched.
+  function translatedAnswers(q, pack) {
+    if (q.tMeta) return renderAnswerMeta(q.tMeta, pack._ui || null);
+    const entry = pack[q.id];
+    return (entry && entry.a && entry.a.length === q.answers.length) ? entry.a : q.answers;
+  }
+
+  function translateCurrentCard(myVersion) {
     if (currentLang === 'en' || !deck[cardIndex]) return;
     const q = deck[cardIndex];
 
@@ -553,22 +615,34 @@
     const answersEl   = document.getElementById('card-answers');
     const answersEnEl = document.getElementById('card-answers-en');
 
-    statusEl.style.display = 'block';
-    statusEl.textContent = 'Translating…';
+    if (TRANSLATION_PACKS[currentLang] === undefined) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'Loading language…';
+    }
 
-    try {
-      const tQ = await translate(q.question, currentLang);
-      if (translateVersion !== myVersion) return; // card changed while we were translating
+    loadPack(currentLang, pack => {
+      if (translateVersion !== myVersion) return; // card changed while pack was loading
+      statusEl.style.display = 'none';
+
+      if (!pack) { // pack file failed to load — show English
+        statusEl.style.display = 'block';
+        statusEl.textContent = 'Translation unavailable — showing English';
+        setTimeout(() => { statusEl.style.display = 'none'; }, 2500);
+        return;
+      }
+
+      const rtl = LANGUAGES[currentLang].rtl ? 'rtl' : 'ltr';
+      const entry = pack[q.id];
+      const tQ = (entry && entry.q) || q.question;
 
       qEl.textContent = tQ;
+      qEl.dir = rtl;
       qEnEl.textContent = q.question;
       qEnEl.style.display = '';
 
-      const tAnswers = await Promise.all(q.answers.map(a => translate(a, currentLang)));
-      if (translateVersion !== myVersion) return;
-
       answersEl.innerHTML = '';
-      tAnswers.forEach(a => {
+      answersEl.dir = rtl;
+      translatedAnswers(q, pack).forEach(a => {
         const li = document.createElement('li');
         li.textContent = a;
         answersEl.appendChild(li);
@@ -582,15 +656,8 @@
       });
       answersEnEl.style.display = '';
 
-      statusEl.style.display = 'none';
-
       if (document.getElementById('auto-read').checked) speak(tQ);
-
-    } catch (err) {
-      if (translateVersion !== myVersion) return;
-      statusEl.textContent = 'Translation unavailable — showing English';
-      setTimeout(() => { statusEl.style.display = 'none'; }, 2500);
-    }
+    });
   }
 
   // ── Navigation ─────────────────────────────────────────────────────────────
@@ -677,11 +744,12 @@
       speakBtn.textContent = '🔊';
       speakBtn.title = 'Read question';
       // iOS requires speak() to be called synchronously within the tap handler.
-      // Use the cached translation if available, otherwise fall back to English.
+      // Use the loaded translation pack if available, otherwise fall back to English.
       speakBtn.onclick = () => {
-        const key = currentLang + '|' + q.question;
-        const text = (currentLang === 'en' || !cache[key]) ? q.question : cache[key];
-        speak(text);
+        const pack = TRANSLATION_PACKS[currentLang];
+        const entry = pack && pack[q.id];
+        if (currentLang !== 'en' && entry && entry.q) speak(entry.q);
+        else speak(q.question, 'en');
       };
 
       // Star/flag button
