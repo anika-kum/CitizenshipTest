@@ -385,7 +385,7 @@ const QUESTIONS = [
   {
     id: 48,
     question: "What are two Cabinet-level positions?",
-    answers: ["Attorney General", "Secretary of Agriculture", "Secretary of Commerce", "Secretary of Education", "Secretary of Energy", "Secretary of Health and Human Services", "Secretary of Homeland Security", "Secretary of Housing and Urban Development", "Secretary of the Interior", "Secretary of Labor", "Secretary of State", "Secretary of Transportation", "Secretary of the Treasury", "Secretary of Veterans Affairs", "Secretary of War (Defense)", "Vice-President", "Administrator of the Environmental Protection Agency", "Administrator of the Small Business Administration", "Director of the Central Intelligence Agency", "Director of the Office of Management and Budget", "Director of National Intelligence", "United States Trade Representative"],
+    answers: ["Attorney General", "Secretary of Agriculture", "Secretary of Commerce", "Secretary of Education", "Secretary of Energy", "Secretary of Health and Human Services", "Secretary of Homeland Security", "Secretary of Housing and Urban Development", "Secretary of the Interior", "Secretary of Labor", "Secretary of State", "Secretary of Transportation", "Secretary of the Treasury", "Secretary of Veterans Affairs", "Secretary of Defense", "Vice-President", "Administrator of the Environmental Protection Agency", "Administrator of the Small Business Administration", "Director of the Central Intelligence Agency", "Director of the Office of Management and Budget", "Director of National Intelligence", "United States Trade Representative"],
     category: "American Government",
     subcategory: "System of Government",
     senior: false
