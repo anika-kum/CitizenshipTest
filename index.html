@@ -157,8 +157,9 @@
   // No official's name is hardcoded in the app — questions marked `dynamic`
   // in questions.js are filled in from this data at run time.
   const GOV_DATA_URLS = [
-    'https://raw.githubusercontent.com/anika-kum/CitizenshipTest/main/gov_data.json',
-    'gov_data.json' // same-origin copy when served locally / by the app bundle host
+    './gov_data.json', // bundle copy (iOS app or local server)
+    'https://cdn.jsdelivr.net/gh/anika-kum/CitizenshipTest@main/gov_data.json', // jsDelivr CDN (faster than raw.githubusercontent.com)
+    'https://raw.githubusercontent.com/anika-kum/CitizenshipTest/main/gov_data.json', // GitHub CDN fallback
   ];
   let govData = null;
 
