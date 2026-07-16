@@ -15,6 +15,7 @@
 		AA00000000000000000000B5 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000F5 /* style.css */; };
 		AA00000000000000000000B6 /* questions.js in Resources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000F6 /* questions.js */; };
 		AA00000000000000000000B7 /* translations in Resources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000F7 /* translations */; };
+		AA00000000000000000000BA /* gov_data.json in Resources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000FA /* gov_data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AA00000000000000000000F7 /* translations */ = {isa = PBXFileReference; lastKnownFileType = folder; name = translations; path = ../translations; sourceTree = "<group>"; };
 		AA00000000000000000000F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA00000000000000000000F9 /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
+		AA00000000000000000000FA /* gov_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = gov_data.json; path = ../gov_data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				AA00000000000000000000F5 /* style.css */,
 				AA00000000000000000000F6 /* questions.js */,
 				AA00000000000000000000F7 /* translations */,
+				AA00000000000000000000FA /* gov_data.json */,
 			);
 			name = WebAssets;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				AA00000000000000000000B5 /* style.css in Resources */,
 				AA00000000000000000000B6 /* questions.js in Resources */,
 				AA00000000000000000000B7 /* translations in Resources */,
+				AA00000000000000000000BA /* gov_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
