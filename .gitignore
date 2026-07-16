@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# Xcode build products and per-user state
+ios/build/
+xcuserdata/
