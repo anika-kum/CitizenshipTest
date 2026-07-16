@@ -35,3 +35,24 @@ jobs:
             git commit -m "chore: refresh gov_data.json from .gov sources"
             git push
           fi
+
+      # This repo is private, so the app can't fetch gov_data.json from it.
+      # Publish the data file to a public data-only repo that the app reads.
+      # GOV_DATA_TOKEN: fine-grained PAT with Contents read/write on
+      # anika-kum/citizenship-gov-data (repo Settings -> Secrets -> Actions).
+      - name: Publish to public data repo
+        env:
+          TOKEN: ${{ secrets.GOV_DATA_TOKEN }}
+        run: |
+          git clone "https://x-access-token:${TOKEN}@github.com/anika-kum/citizenship-gov-data.git" /tmp/gov-data
+          cp gov_data.json /tmp/gov-data/
+          cd /tmp/gov-data
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gov_data.json
+          if git diff --cached --quiet; then
+            echo "Public data repo already up to date."
+          else
+            git commit -m "chore: refresh gov_data.json from .gov sources"
+            git push
+          fi

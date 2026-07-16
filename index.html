@@ -156,10 +156,12 @@
   // scraping senate.gov, house.gov, whitehouse.gov, supremecourt.gov, usa.gov.
   // No official's name is hardcoded in the app — questions marked `dynamic`
   // in questions.js are filled in from this data at run time.
+  // The app repo is private, so the scraper publishes gov_data.json to a
+  // small public data-only repo that these URLs point at.
   const GOV_DATA_URLS = [
-    './gov_data.json', // bundle copy (iOS app or local server)
-    'https://cdn.jsdelivr.net/gh/anika-kum/CitizenshipTest@main/gov_data.json', // jsDelivr CDN (faster than raw.githubusercontent.com)
-    'https://raw.githubusercontent.com/anika-kum/CitizenshipTest/main/gov_data.json', // GitHub CDN fallback
+    'https://raw.githubusercontent.com/anika-kum/citizenship-gov-data/main/gov_data.json',
+    'https://cdn.jsdelivr.net/gh/anika-kum/citizenship-gov-data@main/gov_data.json', // CDN fallback
+    'gov_data.json' // same-origin copy when served locally in a browser during development
   ];
   let govData = null;
 
