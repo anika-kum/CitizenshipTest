@@ -41,14 +41,14 @@
 </div>
 
 <header>
-  <h1>U.S. Citizenship Test — 2025</h1>
-  <p class="subtitle">128 Official USCIS Civics Questions</p>
+  <h1>U.S. Citizenship Test</h1>
+  <p class="subtitle">2025 Civics Test &middot; 128 Official Questions</p>
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-flashcard" onclick="setMode('flashcard')">Flashcards</button>
     <button class="mode-tab" id="tab-browse" onclick="setMode('browse')">Browse All</button>
   </div>
-  <div class="lang-row">
-    <label for="lang-select">&#127758; Language:</label>
+  <div class="header-meta">
+    <label class="meta-chip" for="lang-select">&#127758;
     <select id="lang-select" onchange="setLanguage(this.value)">
       <option value="en">English</option>
       <option value="hi">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)</option>
@@ -69,20 +69,17 @@
       <option value="ru">Русский (Russian)</option>
       <option value="ht">Kreyòl Ayisyen (Haitian Creole)</option>
     </select>
-  </div>
-  <div class="lang-row">
-    <span style="color:rgba(255,255,255,0.85);font-family:Arial,sans-serif;font-size:0.85rem;">
-      &#128205; State: <span id="header-state">—</span>
+    </label>
+    <span class="meta-chip">&#128205; <span id="header-state">—</span>
+      <button class="change-state-btn" onclick="showOnboarding()">Change</button>
     </span>
-    <button class="change-state-btn" onclick="showOnboarding()">Change</button>
   </div>
 </header>
 
 <div class="filter-bar">
-  <label>Filter:</label>
   <button class="filter-btn active" onclick="setFilter('all', event)">All 128</button>
-  <button class="filter-btn senior-btn" onclick="setFilter('senior', event)">&#9733; Senior (20 Questions)</button>
-  <button class="filter-btn starred-filter-btn" onclick="setFilter('starred', event)">&#9873; Flagged for Review</button>
+  <button class="filter-btn senior-btn" onclick="setFilter('senior', event)">&#9733; Senior 20</button>
+  <button class="filter-btn starred-filter-btn" onclick="setFilter('starred', event)">&#9873; Flagged</button>
 </div>
 
 <main>
@@ -93,11 +90,10 @@
       <div class="progress-track">
         <div class="progress-fill" id="progress-fill" style="width:0%"></div>
       </div>
-    </div>
-
-    <div class="shuffle-row">
-      <button class="shuffle-btn" onclick="shuffleDeck()">&#8635; Shuffle</button>
-      <button class="shuffle-btn" onclick="resetDeck()">Reset Order</button>
+      <span class="progress-actions">
+        <button class="icon-btn" title="Shuffle" onclick="shuffleDeck()">&#8635;</button>
+        <button class="icon-btn" title="Reset order" onclick="resetDeck()">&#8634;</button>
+      </span>
     </div>
 
     <div class="translate-status" id="translate-status" style="display:none">Translating&#8230;</div>
@@ -106,12 +102,17 @@
       <div class="flashcard" id="flashcard">
         <!-- FRONT -->
         <div class="card-face card-front">
+          <button class="card-flag-btn" id="star-btn" title="Flag for review"
+                  onclick="event.stopPropagation(); toggleStar()"><span id="star-icon">&#9872;</span></button>
           <div id="card-senior-badge"></div>
           <div class="card-number" id="card-number">#1</div>
           <p class="card-question" id="card-question">Loading&#8230;</p>
           <p class="card-question-secondary" id="card-question-en" style="display:none"></p>
-          <p class="card-hint">Tap card to see the answer</p>
-          <button class="audio-btn" onclick="event.stopPropagation(); speakQuestion()">&#128266; Read Question</button>
+          <p class="card-hint" id="card-hint">Tap card to see the answer</p>
+          <div class="audio-row">
+            <button class="audio-btn" id="btn-read-q" onclick="event.stopPropagation(); speakQuestion()">&#128266; Read Question</button>
+            <button class="stop-btn" title="Stop reading" onclick="event.stopPropagation(); stopSpeech()">&#9632;</button>
+          </div>
         </div>
         <!-- BACK -->
         <div class="card-face card-back">
@@ -119,7 +120,10 @@
           <div class="card-number" id="card-number-back">#1</div>
           <ul class="card-answers" id="card-answers"></ul>
           <ul class="card-answers card-answers-en" id="card-answers-en" style="display:none"></ul>
-          <button class="audio-btn audio-btn-back" onclick="event.stopPropagation(); speakAnswer()">&#128266; Read Answer</button>
+          <div class="audio-row">
+            <button class="audio-btn audio-btn-back" id="btn-read-a" onclick="event.stopPropagation(); speakAnswer()">&#128266; Read Answer</button>
+            <button class="stop-btn stop-btn-back" title="Stop reading" onclick="event.stopPropagation(); stopSpeech()">&#9632;</button>
+          </div>
         </div>
       </div>
     </div>
@@ -127,21 +131,15 @@
     <div class="nav-row">
       <button class="nav-btn" id="btn-prev" onclick="prevCard()">&#8592; Prev</button>
       <span class="nav-counter" id="nav-counter">1 / 128</span>
-      <button class="nav-btn" id="btn-stop" onclick="stopSpeech()">&#9646;&#9646; Stop</button>
       <button class="nav-btn primary" id="btn-next" onclick="nextCard()">Next &#8594;</button>
     </div>
 
     <div class="auto-read-row">
       <label class="auto-read-label">
         <input type="checkbox" id="auto-read" />
-        Auto-read question when card changes
+        <span class="switch"></span>
+        Auto-read questions
       </label>
-    </div>
-
-    <div class="star-row">
-      <button class="star-btn" id="star-btn" onclick="toggleStar()">
-        <span id="star-icon">&#9873;</span> Flag for Review
-      </button>
     </div>
   </div>
 
@@ -437,7 +435,7 @@
     if (!btn || !icon) return;
     icon.textContent = isStarred ? '⚑' : '⚐';
     btn.classList.toggle('starred', isStarred);
-    btn.querySelector('span').nextSibling.textContent = isStarred ? ' Flagged' : ' Flag for Review';
+    btn.title = isStarred ? 'Flagged — tap to remove' : 'Flag for review';
   }
 
   // ── State ──────────────────────────────────────────────────────────────────
@@ -576,7 +574,10 @@
     document.getElementById('flashcard').classList.remove('flipped');
     flipped = false;
 
-    // Reset to English
+    // Reset to English (UI chrome included — translation pass re-labels below)
+    document.getElementById('btn-read-q').textContent = '🔊 Read Question';
+    document.getElementById('btn-read-a').textContent = '🔊 Read Answer';
+    document.getElementById('card-hint').textContent = 'Tap card to see the answer';
     document.getElementById('card-number').textContent = '#' + q.id;
     document.getElementById('card-number-back').textContent = '#' + q.id;
     document.getElementById('card-senior-badge').innerHTML =
@@ -650,6 +651,12 @@
       const rtl = LANGUAGES[currentLang].rtl ? 'rtl' : 'ltr';
       const entry = pack[q.id];
       const tQ = (entry && entry.q) || q.question;
+
+      // UI chrome in the selected language (falls back to English defaults)
+      const ui = pack._ui || {};
+      if (ui.readQuestion) document.getElementById('btn-read-q').textContent = '🔊 ' + ui.readQuestion;
+      if (ui.readAnswer)   document.getElementById('btn-read-a').textContent = '🔊 ' + ui.readAnswer;
+      if (ui.tapHint)      document.getElementById('card-hint').textContent = ui.tapHint;
 
       qEl.textContent = tQ;
       qEl.dir = rtl;

@@ -5,7 +5,10 @@ registerTranslations("vi", {
 "dcNoSenators": "D.C. không có thượng nghị sĩ Hoa Kỳ.",
 "dcNoGovernor": "D.C. không có thống đốc.",
 "dcMayor": "Thị trưởng của D.C. là {name}.",
-"dcCapital": "D.C. không phải là tiểu bang và không có thủ phủ. (Chính D.C. là thủ đô của Hoa Kỳ.)"
+"dcCapital": "D.C. không phải là tiểu bang và không có thủ phủ. (Chính D.C. là thủ đô của Hoa Kỳ.)",
+"readQuestion": "Đọc câu hỏi",
+"readAnswer": "Đọc câu trả lời",
+"tapHint": "Chạm vào thẻ để xem câu trả lời"
 },
 "1": {"q": "Hình thức chính phủ của Hoa Kỳ là gì?", "a": ["Cộng hòa", "Cộng hòa liên bang dựa trên hiến pháp", "Dân chủ đại diện"]},
 "2": {"q": "Luật tối cao của quốc gia là gì?", "a": ["Hiến pháp (Hoa Kỳ)"]},

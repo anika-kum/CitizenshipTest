@@ -5,7 +5,10 @@ registerTranslations("es", {
 "dcNoSenators": "D.C. no tiene senadores de los EE. UU.",
 "dcNoGovernor": "D.C. no tiene gobernador.",
 "dcMayor": "La alcaldesa de D.C. es {name}.",
-"dcCapital": "D.C. no es un estado y no tiene capital. (D.C. es la capital de los Estados Unidos.)"
+"dcCapital": "D.C. no es un estado y no tiene capital. (D.C. es la capital de los Estados Unidos.)",
+"readQuestion": "Escuchar la pregunta",
+"readAnswer": "Escuchar la respuesta",
+"tapHint": "Toque la tarjeta para ver la respuesta"
 },
 "1": {"q": "¿Cuál es la forma de gobierno de los Estados Unidos?", "a": ["República", "República federal basada en una constitución", "Democracia representativa"]},
 "2": {"q": "¿Cuál es la ley suprema de la nación?", "a": ["La Constitución (de los EE. UU.)"]},

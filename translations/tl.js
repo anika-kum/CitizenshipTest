@@ -5,7 +5,10 @@ registerTranslations("tl", {
 "dcNoSenators": "Walang mga senador ng U.S. ang D.C.",
 "dcNoGovernor": "Walang gobernador ang D.C.",
 "dcMayor": "Ang alkalde ng D.C. ay si {name}.",
-"dcCapital": "Ang D.C. ay hindi isang estado at walang kabisera. (Ang D.C. mismo ang kabisera ng Estados Unidos.)"
+"dcCapital": "Ang D.C. ay hindi isang estado at walang kabisera. (Ang D.C. mismo ang kabisera ng Estados Unidos.)",
+"readQuestion": "Basahin ang Tanong",
+"readAnswer": "Basahin ang Sagot",
+"tapHint": "I-tap ang card upang makita ang sagot"
 },
 "1": {"q": "Ano ang anyo ng pamahalaan ng Estados Unidos?", "a": ["Republika", "Pederal na republikang nakabatay sa konstitusyon", "Kinatawang demokrasya"]},
 "2": {"q": "Ano ang pinakamataas na batas ng bansa?", "a": ["Ang Konstitusyon (ng U.S.)"]},
