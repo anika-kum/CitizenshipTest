@@ -8,6 +8,38 @@
 </head>
 <body>
 
+<!-- ── ONBOARDING OVERLAY ── -->
+<div id="onboarding" class="onboarding-overlay">
+  <div class="onboarding-card">
+    <div class="onboarding-flag">🇺🇸</div>
+    <h2>Welcome</h2>
+    <p>Some questions have answers that depend on where you live. Tell us your state so we can show you the right answers.</p>
+    <label for="state-select">Your state</label>
+    <select id="state-select">
+      <option value="">— Choose a state —</option>
+      <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+      <option>Arkansas</option><option>California</option><option>Colorado</option>
+      <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+      <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+      <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+      <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+      <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+      <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+      <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+      <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+      <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+      <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+      <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+      <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+      <option>Texas</option><option>Utah</option><option>Vermont</option>
+      <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+      <option>Wisconsin</option><option>Wyoming</option>
+      <option>District of Columbia</option>
+    </select>
+    <button class="onboarding-btn" id="onboarding-btn" onclick="saveState()" disabled>Continue →</button>
+  </div>
+</div>
+
 <header>
   <h1>U.S. Citizenship Test — 2025</h1>
   <p class="subtitle">128 Official USCIS Civics Questions</p>
@@ -28,6 +60,12 @@
       <option value="pt">Portugu&#234;s (Portuguese)</option>
       <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Arabic)</option>
     </select>
+  </div>
+  <div class="lang-row">
+    <span style="color:rgba(255,255,255,0.85);font-family:Arial,sans-serif;font-size:0.85rem;">
+      &#128205; State: <span id="header-state">—</span>
+    </span>
+    <button class="change-state-btn" onclick="showOnboarding()">Change</button>
   </div>
 </header>
 
@@ -106,6 +144,146 @@
 
 <script src="questions.js"></script>
 <script>
+  // ── Live government data ───────────────────────────────────────────────────
+  // gov_data.json is produced daily by scraper/scrape.py (GitHub Actions),
+  // scraping senate.gov, house.gov, whitehouse.gov, supremecourt.gov, usa.gov.
+  // No official's name is hardcoded in the app — questions marked `dynamic`
+  // in questions.js are filled in from this data at run time.
+  const GOV_DATA_URLS = [
+    'https://raw.githubusercontent.com/anika-kum/CitizenshipTest/main/gov_data.json',
+    'gov_data.json' // same-origin copy when served locally / by the app bundle host
+  ];
+  let govData = null;
+
+  // State capitals are fixed facts (like the question text itself) — they are
+  // state-dependent but never change, so they don't go through the scraper.
+  const STATE_CAPITALS = {
+    'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
+    'Arkansas': 'Little Rock', 'California': 'Sacramento', 'Colorado': 'Denver',
+    'Connecticut': 'Hartford', 'Delaware': 'Dover', 'Florida': 'Tallahassee',
+    'Georgia': 'Atlanta', 'Hawaii': 'Honolulu', 'Idaho': 'Boise',
+    'Illinois': 'Springfield', 'Indiana': 'Indianapolis', 'Iowa': 'Des Moines',
+    'Kansas': 'Topeka', 'Kentucky': 'Frankfort', 'Louisiana': 'Baton Rouge',
+    'Maine': 'Augusta', 'Maryland': 'Annapolis', 'Massachusetts': 'Boston',
+    'Michigan': 'Lansing', 'Minnesota': 'St. Paul', 'Mississippi': 'Jackson',
+    'Missouri': 'Jefferson City', 'Montana': 'Helena', 'Nebraska': 'Lincoln',
+    'Nevada': 'Carson City', 'New Hampshire': 'Concord', 'New Jersey': 'Trenton',
+    'New Mexico': 'Santa Fe', 'New York': 'Albany', 'North Carolina': 'Raleigh',
+    'North Dakota': 'Bismarck', 'Ohio': 'Columbus', 'Oklahoma': 'Oklahoma City',
+    'Oregon': 'Salem', 'Pennsylvania': 'Harrisburg', 'Rhode Island': 'Providence',
+    'South Carolina': 'Columbia', 'South Dakota': 'Pierre', 'Tennessee': 'Nashville',
+    'Texas': 'Austin', 'Utah': 'Salt Lake City', 'Vermont': 'Montpelier',
+    'Virginia': 'Richmond', 'Washington': 'Olympia', 'West Virginia': 'Charleston',
+    'Wisconsin': 'Madison', 'Wyoming': 'Cheyenne'
+  };
+
+  // Q62 (state capital) is filled from the fixed map — no network involved,
+  // so it runs synchronously at startup, before the .gov data fetch resolves.
+  function applyStateCapital() {
+    const state = localStorage.getItem('uscis-state');
+    const q = QUESTIONS.find(q => q.dynamic === 'capital');
+    if (!q || !state) return;
+    q.answers = state === 'District of Columbia'
+      ? ['D.C. is not a state and does not have a capital. (D.C. itself is the capital of the United States.)']
+      : [STATE_CAPITALS[state]];
+  }
+
+  async function loadGovData() {
+    for (const url of GOV_DATA_URLS) {
+      try {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) continue;
+        govData = await res.json();
+        break;
+      } catch { /* try next source */ }
+    }
+    applyGovData();
+  }
+
+  function applyGovData() {
+    // Onboarding guarantees a state is chosen before any card is visible;
+    // if it is somehow missing, the onboarding overlay is covering the screen.
+    const state = localStorage.getItem('uscis-state');
+    const offline = ['Live data unavailable — please connect to the internet and reopen the app'];
+
+    applyStateCapital(); // capital needs no network — fixed in-app map
+
+    QUESTIONS.forEach(q => {
+      if (!q.dynamic || q.dynamic === 'capital') return;
+
+      if (!govData) { q.answers = offline; return; }
+
+      switch (q.dynamic) {
+        case 'president':     q.answers = [govData.president]; break;
+        case 'vicePresident': q.answers = [govData.vicePresident]; break;
+        case 'speaker':       q.answers = [govData.speaker]; break;
+        case 'chiefJustice':  q.answers = [govData.chiefJustice]; break;
+        case 'senators':
+          if (!state) break;
+          // D.C. residents answer that D.C. has no U.S. senators
+          q.answers = govData.senators[state] ||
+            (state === 'District of Columbia' ? ['D.C. has no U.S. senators.'] : offline);
+          break;
+        case 'governors':
+          if (!state) break;
+          // D.C. residents answer that D.C. does not have a governor
+          q.answers = state === 'District of Columbia'
+            ? ['D.C. does not have a governor.' + (govData.governors[state] ? ' (The mayor is ' + govData.governors[state] + '.)' : '')]
+            : (govData.governors[state] ? [govData.governors[state]] : offline);
+          break;
+        case 'representatives': {
+          if (!state) break;
+          const reps = govData.representatives[state];
+          if (!reps) { q.answers = offline; break; }
+          q.answers = reps.length === 1
+            ? [reps[0].name]
+            : ['Your answer depends on your congressional district — find yours at house.gov:']
+                .concat(reps.map(r => r.name + ' (' + r.district + ' district)'));
+          break;
+        }
+      }
+    });
+
+    // Refresh whatever is on screen
+    if (mode === 'flashcard') {
+      renderCard();
+      translateCurrentCard(translateVersion);
+    } else {
+      renderBrowse();
+    }
+  }
+
+  // ── Onboarding ─────────────────────────────────────────────────────────────
+  const stateSelectEl = document.getElementById('state-select');
+  stateSelectEl.addEventListener('change', () => {
+    document.getElementById('onboarding-btn').disabled = !stateSelectEl.value;
+  });
+
+  function saveState() {
+    const s = stateSelectEl.value;
+    if (!s) return;
+    localStorage.setItem('uscis-state', s);
+    document.getElementById('header-state').textContent = s;
+    document.getElementById('onboarding').classList.add('hidden');
+    applyGovData(); // state-specific answers (senators, governor, rep) change with the state
+  }
+
+  function showOnboarding() {
+    const saved = localStorage.getItem('uscis-state') || '';
+    stateSelectEl.value = saved;
+    document.getElementById('onboarding-btn').disabled = !saved;
+    document.getElementById('onboarding').classList.remove('hidden');
+  }
+
+  // On load: skip onboarding if state already saved
+  (function initState() {
+    const saved = localStorage.getItem('uscis-state');
+    if (saved) {
+      document.getElementById('header-state').textContent = saved;
+      document.getElementById('onboarding').classList.add('hidden');
+    }
+  })();
+
   // ── iOS Audio Unlock ───────────────────────────────────────────────────────
   // iOS 18 and below require the audio system to be activated by a real user
   // touch before speechSynthesis.speak() will do anything. A silent empty
@@ -260,7 +438,9 @@
   }
 
   // ── Init ───────────────────────────────────────────────────────────────────
+  applyStateCapital(); // synchronous — capital is correct on the very first render
   applyFilter('all');
+  loadGovData();
 
   // ── Filter ─────────────────────────────────────────────────────────────────
   function setFilter(f, e) {

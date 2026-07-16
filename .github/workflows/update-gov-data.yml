@@ -1,0 +1,37 @@
+name: Update government data
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # daily, 6:00 UTC (~11pm Pacific)
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Stdlib only — no pip install needed.
+      # If any .gov source fails to parse, this step fails and nothing is
+      # committed, so the app keeps serving the last known-good data.
+      - name: Scrape .gov sources
+        run: python scraper/scrape.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gov_data.json
+          if git diff --cached --quiet; then
+            echo "No changes in government data today."
+          else
+            git commit -m "chore: refresh gov_data.json from .gov sources"
+            git push
+          fi

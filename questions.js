@@ -185,7 +185,8 @@ const QUESTIONS = [
   {
     id: 23,
     question: "Who is one of your state's U.S. senators now?",
-    answers: ["Alex Padilla", "Adam Schiff"],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "senators",
     category: "American Government",
     subcategory: "System of Government",
     senior: false
@@ -233,7 +234,8 @@ const QUESTIONS = [
   {
     id: 29,
     question: "Name your U.S. representative.",
-    answers: ["Varies by congressional district. California has 52 districts — look up your district at house.gov to find your representative's name."],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "representatives",
     category: "American Government",
     subcategory: "System of Government",
     senior: false
@@ -241,7 +243,8 @@ const QUESTIONS = [
   {
     id: 30,
     question: "What is the name of the Speaker of the House of Representatives now?",
-    answers: ["Mike Johnson"],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "speaker",
     category: "American Government",
     subcategory: "System of Government",
     senior: true
@@ -305,7 +308,8 @@ const QUESTIONS = [
   {
     id: 38,
     question: "What is the name of the President of the United States now?",
-    answers: ["Donald Trump"],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "president",
     category: "American Government",
     subcategory: "System of Government",
     senior: true
@@ -313,7 +317,8 @@ const QUESTIONS = [
   {
     id: 39,
     question: "What is the name of the Vice President of the United States now?",
-    answers: ["JD Vance"],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "vicePresident",
     category: "American Government",
     subcategory: "System of Government",
     senior: true
@@ -457,7 +462,8 @@ const QUESTIONS = [
   {
     id: 57,
     question: "Who is the Chief Justice of the United States now?",
-    answers: ["John Roberts"],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "chiefJustice",
     category: "American Government",
     subcategory: "System of Government",
     senior: false
@@ -489,7 +495,8 @@ const QUESTIONS = [
   {
     id: 61,
     question: "Who is the governor of your state now?",
-    answers: ["Gavin Newsom"],
+    answers: ["Loading current data from official government sources…"],
+    dynamic: "governors",
     category: "American Government",
     subcategory: "System of Government",
     senior: true
@@ -497,7 +504,8 @@ const QUESTIONS = [
   {
     id: 62,
     question: "What is the capital of your state?",
-    answers: ["Sacramento"],
+    answers: ["Loading…"],
+    dynamic: "capital",
     category: "American Government",
     subcategory: "System of Government",
     senior: false

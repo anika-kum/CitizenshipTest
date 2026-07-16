@@ -1,0 +1,2118 @@
+{
+  "updated": "2026-07-16T05:08:44+00:00",
+  "sources": {
+    "senators": "https://www.senate.gov/senators/index.htm",
+    "representatives": "https://www.house.gov/representatives",
+    "speaker": "https://www.house.gov/leadership",
+    "president": "https://www.whitehouse.gov/administration/",
+    "chiefJustice": "https://www.supremecourt.gov/about/justices.aspx",
+    "governors": "https://www.usa.gov/states/"
+  },
+  "president": "Donald J. Trump",
+  "vicePresident": "JD Vance",
+  "speaker": "Mike Johnson",
+  "chiefJustice": "John G. Roberts, Jr.",
+  "senators": {
+    "Maryland": [
+      "Angela D. Alsobrooks",
+      "Chris Van Hollen"
+    ],
+    "Oklahoma": [
+      "Alan Armstrong",
+      "James Lankford"
+    ],
+    "Wisconsin": [
+      "Tammy Baldwin",
+      "Ron Johnson"
+    ],
+    "Indiana": [
+      "Jim Banks",
+      "Todd Young"
+    ],
+    "Wyoming": [
+      "John Barrasso",
+      "Cynthia M. Lummis"
+    ],
+    "Colorado": [
+      "Michael F. Bennet",
+      "John W. Hickenlooper"
+    ],
+    "Tennessee": [
+      "Marsha Blackburn",
+      "Bill Hagerty"
+    ],
+    "Connecticut": [
+      "Richard Blumenthal",
+      "Christopher Murphy"
+    ],
+    "Delaware": [
+      "Lisa Blunt Rochester",
+      "Christopher A. Coons"
+    ],
+    "New Jersey": [
+      "Cory A. Booker",
+      "Andy Kim"
+    ],
+    "Arkansas": [
+      "John Boozman",
+      "Tom Cotton"
+    ],
+    "Alabama": [
+      "Katie Boyd Britt",
+      "Tommy Tuberville"
+    ],
+    "North Carolina": [
+      "Ted Budd",
+      "Thom Tillis"
+    ],
+    "Washington": [
+      "Maria Cantwell",
+      "Patty Murray"
+    ],
+    "West Virginia": [
+      "Shelley Moore Capito",
+      "James C. Justice"
+    ],
+    "Louisiana": [
+      "Bill Cassidy",
+      "John Kennedy"
+    ],
+    "Maine": [
+      "Susan M. Collins",
+      "Angus S. King, Jr."
+    ],
+    "Texas": [
+      "John Cornyn",
+      "Ted Cruz"
+    ],
+    "Nevada": [
+      "Catherine Cortez Masto",
+      "Jacky Rosen"
+    ],
+    "North Dakota": [
+      "Kevin Cramer",
+      "John Hoeven"
+    ],
+    "Idaho": [
+      "Mike Crapo",
+      "James E. Risch"
+    ],
+    "Utah": [
+      "John R. Curtis",
+      "Mike Lee"
+    ],
+    "Montana": [
+      "Steve Daines",
+      "Tim Sheehy"
+    ],
+    "Illinois": [
+      "Tammy Duckworth",
+      "Richard J. Durbin"
+    ],
+    "Iowa": [
+      "Joni Ernst",
+      "Chuck Grassley"
+    ],
+    "Pennsylvania": [
+      "John Fetterman",
+      "David McCormick"
+    ],
+    "Nebraska": [
+      "Deb Fischer",
+      "Pete Ricketts"
+    ],
+    "Arizona": [
+      "Ruben Gallego",
+      "Mark Kelly"
+    ],
+    "New York": [
+      "Kirsten E. Gillibrand",
+      "Charles E. Schumer"
+    ],
+    "South Carolina": [
+      "Darline Graham",
+      "Tim Scott"
+    ],
+    "New Hampshire": [
+      "Margaret Wood Hassan",
+      "Jeanne Shaheen"
+    ],
+    "Missouri": [
+      "Josh Hawley",
+      "Eric Schmitt"
+    ],
+    "New Mexico": [
+      "Martin Heinrich",
+      "Ben Ray Luj&aacute;n"
+    ],
+    "Hawaii": [
+      "Mazie K. Hirono",
+      "Brian Schatz"
+    ],
+    "Ohio": [
+      "Jon Husted",
+      "Bernie Moreno"
+    ],
+    "Mississippi": [
+      "Cindy Hyde-Smith",
+      "Roger F. Wicker"
+    ],
+    "Virginia": [
+      "Tim Kaine",
+      "Mark R. Warner"
+    ],
+    "Minnesota": [
+      "Amy Klobuchar",
+      "Tina Smith"
+    ],
+    "Massachusetts": [
+      "Edward J. Markey",
+      "Elizabeth Warren"
+    ],
+    "Kansas": [
+      "Roger Marshall",
+      "Jerry Moran"
+    ],
+    "Kentucky": [
+      "Mitch McConnell",
+      "Rand Paul"
+    ],
+    "Oregon": [
+      "Jeff Merkley",
+      "Ron Wyden"
+    ],
+    "Florida": [
+      "Ashley Moody",
+      "Rick Scott"
+    ],
+    "Alaska": [
+      "Lisa Murkowski",
+      "Dan Sullivan"
+    ],
+    "Georgia": [
+      "Jon Ossoff",
+      "Raphael G. Warnock"
+    ],
+    "California": [
+      "Alex Padilla",
+      "Adam B. Schiff"
+    ],
+    "Michigan": [
+      "Gary C. Peters",
+      "Elissa Slotkin"
+    ],
+    "Rhode Island": [
+      "Jack Reed",
+      "Sheldon Whitehouse"
+    ],
+    "South Dakota": [
+      "Mike Rounds",
+      "John Thune"
+    ],
+    "Vermont": [
+      "Bernard Sanders",
+      "Peter Welch"
+    ]
+  },
+  "representatives": {
+    "Alabama": [
+      {
+        "district": "1st",
+        "name": "Barry Moore"
+      },
+      {
+        "district": "2nd",
+        "name": "Shomari Figures"
+      },
+      {
+        "district": "3rd",
+        "name": "Mike Rogers"
+      },
+      {
+        "district": "4th",
+        "name": "Robert Aderholt"
+      },
+      {
+        "district": "5th",
+        "name": "Dale Strong"
+      },
+      {
+        "district": "6th",
+        "name": "Gary Palmer"
+      },
+      {
+        "district": "7th",
+        "name": "Terri Sewell"
+      }
+    ],
+    "Alaska": [
+      {
+        "district": "At Large",
+        "name": "Nicholas Begich"
+      }
+    ],
+    "Arizona": [
+      {
+        "district": "1st",
+        "name": "David Schweikert"
+      },
+      {
+        "district": "2nd",
+        "name": "Elijah Crane"
+      },
+      {
+        "district": "3rd",
+        "name": "Yassamin Ansari"
+      },
+      {
+        "district": "4th",
+        "name": "Greg Stanton"
+      },
+      {
+        "district": "5th",
+        "name": "Andy Biggs"
+      },
+      {
+        "district": "6th",
+        "name": "Juan Ciscomani"
+      },
+      {
+        "district": "7th",
+        "name": "Adelita Grijalva"
+      },
+      {
+        "district": "8th",
+        "name": "Abraham Hamadeh"
+      },
+      {
+        "district": "9th",
+        "name": "Paul Gosar"
+      }
+    ],
+    "Arkansas": [
+      {
+        "district": "1st",
+        "name": "Eric Crawford"
+      },
+      {
+        "district": "2nd",
+        "name": "J. Hill"
+      },
+      {
+        "district": "3rd",
+        "name": "Steve Womack"
+      },
+      {
+        "district": "4th",
+        "name": "Bruce Westerman"
+      }
+    ],
+    "California": [
+      {
+        "district": "1st",
+        "name": "James Gallagher"
+      },
+      {
+        "district": "2nd",
+        "name": "Jared Huffman"
+      },
+      {
+        "district": "3rd",
+        "name": "Kevin Kiley"
+      },
+      {
+        "district": "4th",
+        "name": "Mike Thompson"
+      },
+      {
+        "district": "5th",
+        "name": "Tom McClintock"
+      },
+      {
+        "district": "6th",
+        "name": "Ami Bera"
+      },
+      {
+        "district": "7th",
+        "name": "Doris Matsui"
+      },
+      {
+        "district": "8th",
+        "name": "John Garamendi"
+      },
+      {
+        "district": "9th",
+        "name": "Josh Harder"
+      },
+      {
+        "district": "10th",
+        "name": "Mark DeSaulnier"
+      },
+      {
+        "district": "11th",
+        "name": "Nancy Pelosi"
+      },
+      {
+        "district": "12th",
+        "name": "Lateefah Simon"
+      },
+      {
+        "district": "13th",
+        "name": "Adam Gray"
+      },
+      {
+        "district": "14th",
+        "name": "Eric Swalwell"
+      },
+      {
+        "district": "15th",
+        "name": "Kevin Mullin"
+      },
+      {
+        "district": "16th",
+        "name": "Sam Liccardo"
+      },
+      {
+        "district": "17th",
+        "name": "Ro Khanna"
+      },
+      {
+        "district": "18th",
+        "name": "Zoe Lofgren"
+      },
+      {
+        "district": "19th",
+        "name": "Jimmy Panetta"
+      },
+      {
+        "district": "20th",
+        "name": "Vince Fong"
+      },
+      {
+        "district": "21st",
+        "name": "Jim Costa"
+      },
+      {
+        "district": "22nd",
+        "name": "David Valadao"
+      },
+      {
+        "district": "23rd",
+        "name": "Jay Obernolte"
+      },
+      {
+        "district": "24th",
+        "name": "Salud Carbajal"
+      },
+      {
+        "district": "25th",
+        "name": "Raul Ruiz"
+      },
+      {
+        "district": "26th",
+        "name": "Julia Brownley"
+      },
+      {
+        "district": "27th",
+        "name": "George Whitesides"
+      },
+      {
+        "district": "28th",
+        "name": "Judy Chu"
+      },
+      {
+        "district": "29th",
+        "name": "Luz Rivas"
+      },
+      {
+        "district": "30th",
+        "name": "Laura Friedman"
+      },
+      {
+        "district": "31st",
+        "name": "Gilbert Cisneros"
+      },
+      {
+        "district": "32nd",
+        "name": "Brad Sherman"
+      },
+      {
+        "district": "33rd",
+        "name": "Pete Aguilar"
+      },
+      {
+        "district": "34th",
+        "name": "Jimmy Gomez"
+      },
+      {
+        "district": "35th",
+        "name": "Norma Torres"
+      },
+      {
+        "district": "36th",
+        "name": "Ted Lieu"
+      },
+      {
+        "district": "37th",
+        "name": "Sydney Kamlager-Dove"
+      },
+      {
+        "district": "38th",
+        "name": "Linda Sanchez"
+      },
+      {
+        "district": "39th",
+        "name": "Mark Takano"
+      },
+      {
+        "district": "40th",
+        "name": "Young Kim"
+      },
+      {
+        "district": "41st",
+        "name": "Ken Calvert"
+      },
+      {
+        "district": "42nd",
+        "name": "Robert Garcia"
+      },
+      {
+        "district": "43rd",
+        "name": "Maxine Waters"
+      },
+      {
+        "district": "44th",
+        "name": "Nanette Barragan"
+      },
+      {
+        "district": "45th",
+        "name": "Derek Tran"
+      },
+      {
+        "district": "46th",
+        "name": "J. Correa"
+      },
+      {
+        "district": "47th",
+        "name": "Dave Min"
+      },
+      {
+        "district": "48th",
+        "name": "Darrell Issa"
+      },
+      {
+        "district": "49th",
+        "name": "Mike Levin"
+      },
+      {
+        "district": "50th",
+        "name": "Scott Peters"
+      },
+      {
+        "district": "51st",
+        "name": "Sara Jacobs"
+      },
+      {
+        "district": "52nd",
+        "name": "Juan Vargas"
+      }
+    ],
+    "Colorado": [
+      {
+        "district": "1st",
+        "name": "Diana DeGette"
+      },
+      {
+        "district": "2nd",
+        "name": "Joe Neguse"
+      },
+      {
+        "district": "3rd",
+        "name": "Jeff Hurd"
+      },
+      {
+        "district": "4th",
+        "name": "Lauren Boebert"
+      },
+      {
+        "district": "5th",
+        "name": "Jeff Crank"
+      },
+      {
+        "district": "6th",
+        "name": "Jason Crow"
+      },
+      {
+        "district": "7th",
+        "name": "Brittany Pettersen"
+      },
+      {
+        "district": "8th",
+        "name": "Gabe Evans"
+      }
+    ],
+    "Connecticut": [
+      {
+        "district": "1st",
+        "name": "John Larson"
+      },
+      {
+        "district": "2nd",
+        "name": "Joe Courtney"
+      },
+      {
+        "district": "3rd",
+        "name": "Rosa DeLauro"
+      },
+      {
+        "district": "4th",
+        "name": "James Himes"
+      },
+      {
+        "district": "5th",
+        "name": "Jahana Hayes"
+      }
+    ],
+    "Delaware": [
+      {
+        "district": "At Large",
+        "name": "Sarah McBride"
+      }
+    ],
+    "District of Columbia": [
+      {
+        "district": "Delegate",
+        "name": "Eleanor Norton"
+      }
+    ],
+    "Florida": [
+      {
+        "district": "1st",
+        "name": "Jimmy Patronis"
+      },
+      {
+        "district": "2nd",
+        "name": "Neal Dunn"
+      },
+      {
+        "district": "3rd",
+        "name": "Kat Cammack"
+      },
+      {
+        "district": "4th",
+        "name": "Aaron Bean"
+      },
+      {
+        "district": "5th",
+        "name": "John Rutherford"
+      },
+      {
+        "district": "6th",
+        "name": "Randy Fine"
+      },
+      {
+        "district": "7th",
+        "name": "Cory Mills"
+      },
+      {
+        "district": "8th",
+        "name": "Mike Haridopolos"
+      },
+      {
+        "district": "9th",
+        "name": "Darren Soto"
+      },
+      {
+        "district": "10th",
+        "name": "Maxwell Frost"
+      },
+      {
+        "district": "11th",
+        "name": "Daniel Webster"
+      },
+      {
+        "district": "12th",
+        "name": "Gus Bilirakis"
+      },
+      {
+        "district": "13th",
+        "name": "Anna Paulina Luna"
+      },
+      {
+        "district": "14th",
+        "name": "Kathy Castor"
+      },
+      {
+        "district": "15th",
+        "name": "Laurel Lee"
+      },
+      {
+        "district": "16th",
+        "name": "Vern Buchanan"
+      },
+      {
+        "district": "17th",
+        "name": "W. Steube"
+      },
+      {
+        "district": "18th",
+        "name": "Scott Franklin"
+      },
+      {
+        "district": "19th",
+        "name": "Byron Donalds"
+      },
+      {
+        "district": "20th",
+        "name": "Sheila Cherfilus-McCormick"
+      },
+      {
+        "district": "21st",
+        "name": "Brian Mast"
+      },
+      {
+        "district": "22nd",
+        "name": "Lois Frankel"
+      },
+      {
+        "district": "23rd",
+        "name": "Jared Moskowitz"
+      },
+      {
+        "district": "24th",
+        "name": "Frederica Wilson"
+      },
+      {
+        "district": "25th",
+        "name": "Debbie Wasserman Schultz"
+      },
+      {
+        "district": "26th",
+        "name": "Mario Diaz-Balart"
+      },
+      {
+        "district": "27th",
+        "name": "Maria Salazar"
+      },
+      {
+        "district": "28th",
+        "name": "Carlos Gimenez"
+      }
+    ],
+    "Georgia": [
+      {
+        "district": "1st",
+        "name": "Earl Carter"
+      },
+      {
+        "district": "2nd",
+        "name": "Sanford Bishop"
+      },
+      {
+        "district": "3rd",
+        "name": "Brian Jack"
+      },
+      {
+        "district": "4th",
+        "name": "Henry Johnson"
+      },
+      {
+        "district": "5th",
+        "name": "Nikema Williams"
+      },
+      {
+        "district": "6th",
+        "name": "Lucy McBath"
+      },
+      {
+        "district": "7th",
+        "name": "Richard McCormick"
+      },
+      {
+        "district": "8th",
+        "name": "Austin Scott"
+      },
+      {
+        "district": "9th",
+        "name": "Andrew Clyde"
+      },
+      {
+        "district": "10th",
+        "name": "Mike Collins"
+      },
+      {
+        "district": "11th",
+        "name": "Barry Loudermilk"
+      },
+      {
+        "district": "12th",
+        "name": "Rick Allen"
+      },
+      {
+        "district": "13th",
+        "name": "David Scott"
+      },
+      {
+        "district": "14th",
+        "name": "Clay Fuller"
+      }
+    ],
+    "Hawaii": [
+      {
+        "district": "1st",
+        "name": "Ed Case"
+      },
+      {
+        "district": "2nd",
+        "name": "Jill Tokuda"
+      }
+    ],
+    "Idaho": [
+      {
+        "district": "1st",
+        "name": "Russ Fulcher"
+      },
+      {
+        "district": "2nd",
+        "name": "Michael Simpson"
+      }
+    ],
+    "Illinois": [
+      {
+        "district": "1st",
+        "name": "Jonathan Jackson"
+      },
+      {
+        "district": "2nd",
+        "name": "Robin Kelly"
+      },
+      {
+        "district": "3rd",
+        "name": "Delia Ramirez"
+      },
+      {
+        "district": "4th",
+        "name": "Jesus Garcia"
+      },
+      {
+        "district": "5th",
+        "name": "Mike Quigley"
+      },
+      {
+        "district": "6th",
+        "name": "Sean Casten"
+      },
+      {
+        "district": "7th",
+        "name": "Danny Davis"
+      },
+      {
+        "district": "8th",
+        "name": "Raja Krishnamoorthi"
+      },
+      {
+        "district": "9th",
+        "name": "Janice Schakowsky"
+      },
+      {
+        "district": "10th",
+        "name": "Bradley Schneider"
+      },
+      {
+        "district": "11th",
+        "name": "Bill Foster"
+      },
+      {
+        "district": "12th",
+        "name": "Mike Bost"
+      },
+      {
+        "district": "13th",
+        "name": "Nikki Budzinski"
+      },
+      {
+        "district": "14th",
+        "name": "Lauren Underwood"
+      },
+      {
+        "district": "15th",
+        "name": "Mary Miller"
+      },
+      {
+        "district": "16th",
+        "name": "Darin LaHood"
+      },
+      {
+        "district": "17th",
+        "name": "Eric Sorensen"
+      }
+    ],
+    "Indiana": [
+      {
+        "district": "1st",
+        "name": "Frank Mrvan"
+      },
+      {
+        "district": "2nd",
+        "name": "Rudy Yakym"
+      },
+      {
+        "district": "3rd",
+        "name": "Marlin Stutzman"
+      },
+      {
+        "district": "4th",
+        "name": "James Baird"
+      },
+      {
+        "district": "5th",
+        "name": "Victoria Spartz"
+      },
+      {
+        "district": "6th",
+        "name": "Jefferson Shreve"
+      },
+      {
+        "district": "7th",
+        "name": "Andre Carson"
+      },
+      {
+        "district": "8th",
+        "name": "Mark Messmer"
+      },
+      {
+        "district": "9th",
+        "name": "Erin Houchin"
+      }
+    ],
+    "Iowa": [
+      {
+        "district": "1st",
+        "name": "Mariannette Miller-Meeks"
+      },
+      {
+        "district": "2nd",
+        "name": "Ashley Hinson"
+      },
+      {
+        "district": "3rd",
+        "name": "Zachary Nunn"
+      },
+      {
+        "district": "4th",
+        "name": "Randy Feenstra"
+      }
+    ],
+    "Kansas": [
+      {
+        "district": "1st",
+        "name": "Tracey Mann"
+      },
+      {
+        "district": "2nd",
+        "name": "Derek Schmidt"
+      },
+      {
+        "district": "3rd",
+        "name": "Sharice Davids"
+      },
+      {
+        "district": "4th",
+        "name": "Ron Estes"
+      }
+    ],
+    "Kentucky": [
+      {
+        "district": "1st",
+        "name": "James Comer"
+      },
+      {
+        "district": "2nd",
+        "name": "Brett Guthrie"
+      },
+      {
+        "district": "3rd",
+        "name": "Morgan McGarvey"
+      },
+      {
+        "district": "4th",
+        "name": "Thomas Massie"
+      },
+      {
+        "district": "5th",
+        "name": "Harold Rogers"
+      },
+      {
+        "district": "6th",
+        "name": "Andy Barr"
+      }
+    ],
+    "Louisiana": [
+      {
+        "district": "1st",
+        "name": "Steve Scalise"
+      },
+      {
+        "district": "2nd",
+        "name": "Troy Carter"
+      },
+      {
+        "district": "3rd",
+        "name": "Clay Higgins"
+      },
+      {
+        "district": "4th",
+        "name": "Mike Johnson"
+      },
+      {
+        "district": "5th",
+        "name": "Julia Letlow"
+      },
+      {
+        "district": "6th",
+        "name": "Cleo Fields"
+      }
+    ],
+    "Maine": [
+      {
+        "district": "1st",
+        "name": "Chellie Pingree"
+      },
+      {
+        "district": "2nd",
+        "name": "Jared Golden"
+      }
+    ],
+    "Maryland": [
+      {
+        "district": "1st",
+        "name": "Andy Harris"
+      },
+      {
+        "district": "2nd",
+        "name": "Johnny Olszewski"
+      },
+      {
+        "district": "3rd",
+        "name": "Sarah Elfreth"
+      },
+      {
+        "district": "4th",
+        "name": "Glenn Ivey"
+      },
+      {
+        "district": "5th",
+        "name": "Steny Hoyer"
+      },
+      {
+        "district": "6th",
+        "name": "April McClain Delaney"
+      },
+      {
+        "district": "7th",
+        "name": "Kweisi Mfume"
+      },
+      {
+        "district": "8th",
+        "name": "Jamie Raskin"
+      }
+    ],
+    "Massachusetts": [
+      {
+        "district": "1st",
+        "name": "Richard Neal"
+      },
+      {
+        "district": "2nd",
+        "name": "James McGovern"
+      },
+      {
+        "district": "3rd",
+        "name": "Lori Trahan"
+      },
+      {
+        "district": "4th",
+        "name": "Jake Auchincloss"
+      },
+      {
+        "district": "5th",
+        "name": "Katherine Clark"
+      },
+      {
+        "district": "6th",
+        "name": "Seth Moulton"
+      },
+      {
+        "district": "7th",
+        "name": "Ayanna Pressley"
+      },
+      {
+        "district": "8th",
+        "name": "Stephen Lynch"
+      },
+      {
+        "district": "9th",
+        "name": "William Keating"
+      }
+    ],
+    "Michigan": [
+      {
+        "district": "1st",
+        "name": "Jack Bergman"
+      },
+      {
+        "district": "2nd",
+        "name": "John Moolenaar"
+      },
+      {
+        "district": "3rd",
+        "name": "Hillary Scholten"
+      },
+      {
+        "district": "4th",
+        "name": "Bill Huizenga"
+      },
+      {
+        "district": "5th",
+        "name": "Tim Walberg"
+      },
+      {
+        "district": "6th",
+        "name": "Debbie Dingell"
+      },
+      {
+        "district": "7th",
+        "name": "Tom Barrett"
+      },
+      {
+        "district": "8th",
+        "name": "Kristen McDonald Rivet"
+      },
+      {
+        "district": "9th",
+        "name": "Lisa McClain"
+      },
+      {
+        "district": "10th",
+        "name": "John James"
+      },
+      {
+        "district": "11th",
+        "name": "Haley Stevens"
+      },
+      {
+        "district": "12th",
+        "name": "Rashida Tlaib"
+      },
+      {
+        "district": "13th",
+        "name": "Shri Thanedar"
+      }
+    ],
+    "Minnesota": [
+      {
+        "district": "1st",
+        "name": "Brad Finstad"
+      },
+      {
+        "district": "2nd",
+        "name": "Angie Craig"
+      },
+      {
+        "district": "3rd",
+        "name": "Kelly Morrison"
+      },
+      {
+        "district": "4th",
+        "name": "Betty McCollum"
+      },
+      {
+        "district": "5th",
+        "name": "Ilhan Omar"
+      },
+      {
+        "district": "6th",
+        "name": "Tom Emmer"
+      },
+      {
+        "district": "7th",
+        "name": "Michelle Fischbach"
+      },
+      {
+        "district": "8th",
+        "name": "Pete Stauber"
+      }
+    ],
+    "Mississippi": [
+      {
+        "district": "1st",
+        "name": "Trent Kelly"
+      },
+      {
+        "district": "2nd",
+        "name": "Bennie Thompson"
+      },
+      {
+        "district": "3rd",
+        "name": "Michael Guest"
+      },
+      {
+        "district": "4th",
+        "name": "Mike Ezell"
+      }
+    ],
+    "Missouri": [
+      {
+        "district": "1st",
+        "name": "Wesley Bell"
+      },
+      {
+        "district": "2nd",
+        "name": "Ann Wagner"
+      },
+      {
+        "district": "3rd",
+        "name": "Robert Onder"
+      },
+      {
+        "district": "4th",
+        "name": "Mark Alford"
+      },
+      {
+        "district": "5th",
+        "name": "Emanuel Cleaver"
+      },
+      {
+        "district": "6th",
+        "name": "Sam Graves"
+      },
+      {
+        "district": "7th",
+        "name": "Eric Burlison"
+      },
+      {
+        "district": "8th",
+        "name": "Jason Smith"
+      }
+    ],
+    "Montana": [
+      {
+        "district": "1st",
+        "name": "Ryan Zinke"
+      },
+      {
+        "district": "2nd",
+        "name": "Troy Downing"
+      }
+    ],
+    "Nebraska": [
+      {
+        "district": "1st",
+        "name": "Mike Flood"
+      },
+      {
+        "district": "2nd",
+        "name": "Don Bacon"
+      },
+      {
+        "district": "3rd",
+        "name": "Adrian Smith"
+      }
+    ],
+    "Nevada": [
+      {
+        "district": "1st",
+        "name": "Dina Titus"
+      },
+      {
+        "district": "2nd",
+        "name": "Mark Amodei"
+      },
+      {
+        "district": "3rd",
+        "name": "Susie Lee"
+      },
+      {
+        "district": "4th",
+        "name": "Steven Horsford"
+      }
+    ],
+    "New Hampshire": [
+      {
+        "district": "1st",
+        "name": "Chris Pappas"
+      },
+      {
+        "district": "2nd",
+        "name": "Maggie Goodlander"
+      }
+    ],
+    "New Jersey": [
+      {
+        "district": "1st",
+        "name": "Donald Norcross"
+      },
+      {
+        "district": "2nd",
+        "name": "Jefferson Van Drew"
+      },
+      {
+        "district": "3rd",
+        "name": "Herbert Conaway"
+      },
+      {
+        "district": "4th",
+        "name": "Christopher Smith"
+      },
+      {
+        "district": "5th",
+        "name": "Josh Gottheimer"
+      },
+      {
+        "district": "6th",
+        "name": "Frank Pallone"
+      },
+      {
+        "district": "7th",
+        "name": "Thomas Kean"
+      },
+      {
+        "district": "8th",
+        "name": "Robert Menendez"
+      },
+      {
+        "district": "9th",
+        "name": "Nellie Pou"
+      },
+      {
+        "district": "10th",
+        "name": "LaMonica McIver"
+      },
+      {
+        "district": "11th",
+        "name": "Analilia Mejia"
+      },
+      {
+        "district": "12th",
+        "name": "Bonnie Watson Coleman"
+      }
+    ],
+    "New Mexico": [
+      {
+        "district": "1st",
+        "name": "Melanie Stansbury"
+      },
+      {
+        "district": "2nd",
+        "name": "Gabe Vasquez"
+      },
+      {
+        "district": "3rd",
+        "name": "Teresa Leger Fernandez"
+      }
+    ],
+    "New York": [
+      {
+        "district": "1st",
+        "name": "Nick LaLota"
+      },
+      {
+        "district": "2nd",
+        "name": "Andrew Garbarino"
+      },
+      {
+        "district": "3rd",
+        "name": "Thomas R. Suozzi"
+      },
+      {
+        "district": "4th",
+        "name": "Laura Gillen"
+      },
+      {
+        "district": "5th",
+        "name": "Gregory Meeks"
+      },
+      {
+        "district": "6th",
+        "name": "Grace Meng"
+      },
+      {
+        "district": "7th",
+        "name": "Nydia Velazquez"
+      },
+      {
+        "district": "8th",
+        "name": "Hakeem Jeffries"
+      },
+      {
+        "district": "9th",
+        "name": "Yvette Clarke"
+      },
+      {
+        "district": "10th",
+        "name": "Daniel Goldman"
+      },
+      {
+        "district": "11th",
+        "name": "Nicole Malliotakis"
+      },
+      {
+        "district": "12th",
+        "name": "Jerrold Nadler"
+      },
+      {
+        "district": "13th",
+        "name": "Adriano Espaillat"
+      },
+      {
+        "district": "14th",
+        "name": "Alexandria Ocasio-Cortez"
+      },
+      {
+        "district": "15th",
+        "name": "Ritchie Torres"
+      },
+      {
+        "district": "16th",
+        "name": "George Latimer"
+      },
+      {
+        "district": "17th",
+        "name": "Michael Lawler"
+      },
+      {
+        "district": "18th",
+        "name": "Patrick Ryan"
+      },
+      {
+        "district": "19th",
+        "name": "Josh Riley"
+      },
+      {
+        "district": "20th",
+        "name": "Paul Tonko"
+      },
+      {
+        "district": "21st",
+        "name": "Elise Stefanik"
+      },
+      {
+        "district": "22nd",
+        "name": "John Mannion"
+      },
+      {
+        "district": "23rd",
+        "name": "Nicholas Langworthy"
+      },
+      {
+        "district": "24th",
+        "name": "Claudia Tenney"
+      },
+      {
+        "district": "25th",
+        "name": "Joseph Morelle"
+      },
+      {
+        "district": "26th",
+        "name": "Timothy Kennedy"
+      }
+    ],
+    "North Carolina": [
+      {
+        "district": "1st",
+        "name": "Donald Davis"
+      },
+      {
+        "district": "2nd",
+        "name": "Deborah Ross"
+      },
+      {
+        "district": "3rd",
+        "name": "Gregory Murphy"
+      },
+      {
+        "district": "4th",
+        "name": "Valerie Foushee"
+      },
+      {
+        "district": "5th",
+        "name": "Virginia Foxx"
+      },
+      {
+        "district": "6th",
+        "name": "Addison McDowell"
+      },
+      {
+        "district": "7th",
+        "name": "David Rouzer"
+      },
+      {
+        "district": "8th",
+        "name": "Mark Harris"
+      },
+      {
+        "district": "9th",
+        "name": "Richard Hudson"
+      },
+      {
+        "district": "10th",
+        "name": "Pat Harrigan"
+      },
+      {
+        "district": "11th",
+        "name": "Chuck Edwards"
+      },
+      {
+        "district": "12th",
+        "name": "Alma Adams"
+      },
+      {
+        "district": "13th",
+        "name": "Brad Knott"
+      },
+      {
+        "district": "14th",
+        "name": "Tim Moore"
+      }
+    ],
+    "North Dakota": [
+      {
+        "district": "At Large",
+        "name": "Julie Fedorchak"
+      }
+    ],
+    "Ohio": [
+      {
+        "district": "1st",
+        "name": "Greg Landsman"
+      },
+      {
+        "district": "2nd",
+        "name": "David Taylor"
+      },
+      {
+        "district": "3rd",
+        "name": "Joyce Beatty"
+      },
+      {
+        "district": "4th",
+        "name": "Jim Jordan"
+      },
+      {
+        "district": "5th",
+        "name": "Robert Latta"
+      },
+      {
+        "district": "6th",
+        "name": "Michael A. Rulli"
+      },
+      {
+        "district": "7th",
+        "name": "Max Miller"
+      },
+      {
+        "district": "8th",
+        "name": "Warren Davidson"
+      },
+      {
+        "district": "9th",
+        "name": "Marcy Kaptur"
+      },
+      {
+        "district": "10th",
+        "name": "Michael Turner"
+      },
+      {
+        "district": "11th",
+        "name": "Shontel Brown"
+      },
+      {
+        "district": "12th",
+        "name": "Troy Balderson"
+      },
+      {
+        "district": "13th",
+        "name": "Emilia Sykes"
+      },
+      {
+        "district": "14th",
+        "name": "David Joyce"
+      },
+      {
+        "district": "15th",
+        "name": "Mike Carey"
+      }
+    ],
+    "Oklahoma": [
+      {
+        "district": "1st",
+        "name": "Kevin Hern"
+      },
+      {
+        "district": "2nd",
+        "name": "Josh Brecheen"
+      },
+      {
+        "district": "3rd",
+        "name": "Frank Lucas"
+      },
+      {
+        "district": "4th",
+        "name": "Tom Cole"
+      },
+      {
+        "district": "5th",
+        "name": "Stephanie Bice"
+      }
+    ],
+    "Oregon": [
+      {
+        "district": "1st",
+        "name": "Suzanne Bonamici"
+      },
+      {
+        "district": "2nd",
+        "name": "Cliff Bentz"
+      },
+      {
+        "district": "3rd",
+        "name": "Maxine Dexter"
+      },
+      {
+        "district": "4th",
+        "name": "Val Hoyle"
+      },
+      {
+        "district": "5th",
+        "name": "Janelle Bynum"
+      },
+      {
+        "district": "6th",
+        "name": "Andrea Salinas"
+      }
+    ],
+    "Pennsylvania": [
+      {
+        "district": "1st",
+        "name": "Brian Fitzpatrick"
+      },
+      {
+        "district": "2nd",
+        "name": "Brendan Boyle"
+      },
+      {
+        "district": "3rd",
+        "name": "Dwight Evans"
+      },
+      {
+        "district": "4th",
+        "name": "Madeleine Dean"
+      },
+      {
+        "district": "5th",
+        "name": "Mary Gay Scanlon"
+      },
+      {
+        "district": "6th",
+        "name": "Chrissy Houlahan"
+      },
+      {
+        "district": "7th",
+        "name": "Ryan Mackenzie"
+      },
+      {
+        "district": "8th",
+        "name": "Robert Bresnahan"
+      },
+      {
+        "district": "9th",
+        "name": "Daniel Meuser"
+      },
+      {
+        "district": "10th",
+        "name": "Scott Perry"
+      },
+      {
+        "district": "11th",
+        "name": "Lloyd Smucker"
+      },
+      {
+        "district": "12th",
+        "name": "Summer Lee"
+      },
+      {
+        "district": "13th",
+        "name": "John Joyce"
+      },
+      {
+        "district": "14th",
+        "name": "Guy Reschenthaler"
+      },
+      {
+        "district": "15th",
+        "name": "Glenn Thompson"
+      },
+      {
+        "district": "16th",
+        "name": "Mike Kelly"
+      },
+      {
+        "district": "17th",
+        "name": "Christopher Deluzio"
+      }
+    ],
+    "Rhode Island": [
+      {
+        "district": "1st",
+        "name": "Gabe Amo"
+      },
+      {
+        "district": "2nd",
+        "name": "Seth Magaziner"
+      }
+    ],
+    "South Carolina": [
+      {
+        "district": "1st",
+        "name": "Nancy Mace"
+      },
+      {
+        "district": "2nd",
+        "name": "Joe Wilson"
+      },
+      {
+        "district": "3rd",
+        "name": "Sheri Biggs"
+      },
+      {
+        "district": "4th",
+        "name": "William Timmons"
+      },
+      {
+        "district": "5th",
+        "name": "Ralph Norman"
+      },
+      {
+        "district": "6th",
+        "name": "James Clyburn"
+      },
+      {
+        "district": "7th",
+        "name": "Russell Fry"
+      }
+    ],
+    "South Dakota": [
+      {
+        "district": "At Large",
+        "name": "Dusty Johnson"
+      }
+    ],
+    "Tennessee": [
+      {
+        "district": "1st",
+        "name": "Diana Harshbarger"
+      },
+      {
+        "district": "2nd",
+        "name": "Tim Burchett"
+      },
+      {
+        "district": "3rd",
+        "name": "Charles Fleischmann"
+      },
+      {
+        "district": "4th",
+        "name": "Scott DesJarlais"
+      },
+      {
+        "district": "5th",
+        "name": "Andrew Ogles"
+      },
+      {
+        "district": "6th",
+        "name": "John Rose"
+      },
+      {
+        "district": "7th",
+        "name": "Matt Van Epps"
+      },
+      {
+        "district": "8th",
+        "name": "David Kustoff"
+      },
+      {
+        "district": "9th",
+        "name": "Steve Cohen"
+      }
+    ],
+    "Texas": [
+      {
+        "district": "1st",
+        "name": "Nathaniel Moran"
+      },
+      {
+        "district": "2nd",
+        "name": "Dan Crenshaw"
+      },
+      {
+        "district": "3rd",
+        "name": "Keith Self"
+      },
+      {
+        "district": "4th",
+        "name": "Pat Fallon"
+      },
+      {
+        "district": "5th",
+        "name": "Lance Gooden"
+      },
+      {
+        "district": "6th",
+        "name": "Jake Ellzey"
+      },
+      {
+        "district": "7th",
+        "name": "Lizzie Fletcher"
+      },
+      {
+        "district": "8th",
+        "name": "Morgan Luttrell"
+      },
+      {
+        "district": "9th",
+        "name": "Al Green"
+      },
+      {
+        "district": "10th",
+        "name": "Michael McCaul"
+      },
+      {
+        "district": "11th",
+        "name": "August Pfluger"
+      },
+      {
+        "district": "12th",
+        "name": "Craig Goldman"
+      },
+      {
+        "district": "13th",
+        "name": "Ronny Jackson"
+      },
+      {
+        "district": "14th",
+        "name": "Randy Weber"
+      },
+      {
+        "district": "15th",
+        "name": "Monica De La Cruz"
+      },
+      {
+        "district": "16th",
+        "name": "Veronica Escobar"
+      },
+      {
+        "district": "17th",
+        "name": "Pete Sessions"
+      },
+      {
+        "district": "18th",
+        "name": "Christian Menefee"
+      },
+      {
+        "district": "19th",
+        "name": "Jodey Arrington"
+      },
+      {
+        "district": "20th",
+        "name": "Joaquin Castro"
+      },
+      {
+        "district": "21st",
+        "name": "Chip Roy"
+      },
+      {
+        "district": "22nd",
+        "name": "Troy Nehls"
+      },
+      {
+        "district": "23rd",
+        "name": "Tony Gonzales"
+      },
+      {
+        "district": "24th",
+        "name": "Beth Van Duyne"
+      },
+      {
+        "district": "25th",
+        "name": "Roger Williams"
+      },
+      {
+        "district": "26th",
+        "name": "Brandon Gill"
+      },
+      {
+        "district": "27th",
+        "name": "Michael Cloud"
+      },
+      {
+        "district": "28th",
+        "name": "Henry Cuellar"
+      },
+      {
+        "district": "29th",
+        "name": "Sylvia Garcia"
+      },
+      {
+        "district": "30th",
+        "name": "Jasmine Crockett"
+      },
+      {
+        "district": "31st",
+        "name": "John Carter"
+      },
+      {
+        "district": "32nd",
+        "name": "Julie Johnson"
+      },
+      {
+        "district": "33rd",
+        "name": "Marc Veasey"
+      },
+      {
+        "district": "34th",
+        "name": "Vicente Gonzalez"
+      },
+      {
+        "district": "35th",
+        "name": "Greg Casar"
+      },
+      {
+        "district": "36th",
+        "name": "Brian Babin"
+      },
+      {
+        "district": "37th",
+        "name": "Lloyd Doggett"
+      },
+      {
+        "district": "38th",
+        "name": "Wesley Hunt"
+      }
+    ],
+    "Utah": [
+      {
+        "district": "1st",
+        "name": "Blake Moore"
+      },
+      {
+        "district": "2nd",
+        "name": "Celeste Maloy"
+      },
+      {
+        "district": "3rd",
+        "name": "Mike Kennedy"
+      },
+      {
+        "district": "4th",
+        "name": "Burgess Owens"
+      }
+    ],
+    "Vermont": [
+      {
+        "district": "At Large",
+        "name": "Becca Balint"
+      }
+    ],
+    "Virginia": [
+      {
+        "district": "1st",
+        "name": "Robert Wittman"
+      },
+      {
+        "district": "2nd",
+        "name": "Jennifer Kiggans"
+      },
+      {
+        "district": "3rd",
+        "name": "Robert Scott"
+      },
+      {
+        "district": "4th",
+        "name": "Jennifer McClellan"
+      },
+      {
+        "district": "5th",
+        "name": "John McGuire"
+      },
+      {
+        "district": "6th",
+        "name": "Ben Cline"
+      },
+      {
+        "district": "7th",
+        "name": "Eugene Vindman"
+      },
+      {
+        "district": "8th",
+        "name": "Donald Beyer"
+      },
+      {
+        "district": "9th",
+        "name": "H. Griffith"
+      },
+      {
+        "district": "10th",
+        "name": "Suhas Subramanyam"
+      },
+      {
+        "district": "11th",
+        "name": "James Walkinshaw"
+      }
+    ],
+    "Washington": [
+      {
+        "district": "1st",
+        "name": "Suzan DelBene"
+      },
+      {
+        "district": "2nd",
+        "name": "Rick Larsen"
+      },
+      {
+        "district": "3rd",
+        "name": "Marie Perez"
+      },
+      {
+        "district": "4th",
+        "name": "Dan Newhouse"
+      },
+      {
+        "district": "5th",
+        "name": "Michael Baumgartner"
+      },
+      {
+        "district": "6th",
+        "name": "Emily Randall"
+      },
+      {
+        "district": "7th",
+        "name": "Pramila Jayapal"
+      },
+      {
+        "district": "8th",
+        "name": "Kim Schrier"
+      },
+      {
+        "district": "9th",
+        "name": "Adam Smith"
+      },
+      {
+        "district": "10th",
+        "name": "Marilyn Strickland"
+      }
+    ],
+    "West Virginia": [
+      {
+        "district": "1st",
+        "name": "Carol Miller"
+      },
+      {
+        "district": "2nd",
+        "name": "Riley Moore"
+      }
+    ],
+    "Wisconsin": [
+      {
+        "district": "1st",
+        "name": "Bryan Steil"
+      },
+      {
+        "district": "2nd",
+        "name": "Mark Pocan"
+      },
+      {
+        "district": "3rd",
+        "name": "Derrick Van Orden"
+      },
+      {
+        "district": "4th",
+        "name": "Gwen Moore"
+      },
+      {
+        "district": "5th",
+        "name": "Scott Fitzgerald"
+      },
+      {
+        "district": "6th",
+        "name": "Glenn Grothman"
+      },
+      {
+        "district": "7th",
+        "name": "Thomas Tiffany"
+      },
+      {
+        "district": "8th",
+        "name": "Tony Wied"
+      }
+    ],
+    "Wyoming": [
+      {
+        "district": "At Large",
+        "name": "Harriet Hageman"
+      }
+    ]
+  },
+  "governors": {
+    "Alabama": "Kay Ivey",
+    "Alaska": "Mike Dunleavy",
+    "Arizona": "Katie Hobbs",
+    "Arkansas": "Sarah Huckabee Sanders",
+    "California": "Gavin Newsom",
+    "Colorado": "Jared Polis",
+    "Connecticut": "Ned Lamont",
+    "Delaware": "Matt Meyer",
+    "Florida": "Ron DeSantis",
+    "Georgia": "Brian P. Kemp",
+    "Hawaii": "Josh Green",
+    "Idaho": "Brad Little",
+    "Illinois": "JB Pritzker",
+    "Indiana": "Mike Braun",
+    "Iowa": "Kim Reynolds",
+    "Kansas": "Laura Kelly",
+    "Kentucky": "Andy Beshear",
+    "Louisiana": "Jeff Landry",
+    "Maine": "Janet T. Mills",
+    "Maryland": "Wes Moore",
+    "Massachusetts": "Maura Healey",
+    "Michigan": "Gretchen Whitmer",
+    "Minnesota": "Tim Walz",
+    "Mississippi": "Tate Reeves",
+    "Missouri": "Mike Kehoe",
+    "Montana": "Greg Gianforte",
+    "Nebraska": "Jim Pillen",
+    "Nevada": "Joe Lombardo",
+    "New Hampshire": "Kelly Ayotte",
+    "New Jersey": "Mikie Sherrill",
+    "New Mexico": "Michelle Lujan Grisham",
+    "New York": "Kathy Hochul",
+    "North Carolina": "Josh Stein",
+    "North Dakota": "Kelly Armstrong",
+    "Ohio": "Mike DeWine",
+    "Oklahoma": "J. Kevin Stitt",
+    "Oregon": "Tina Kotek",
+    "Pennsylvania": "Josh Shapiro",
+    "Rhode Island": "Dan McKee",
+    "South Carolina": "Henry McMaster",
+    "South Dakota": "Larry Rhoden",
+    "Tennessee": "Bill Lee",
+    "Texas": "Greg Abbott",
+    "Utah": "Spencer J. Cox",
+    "Vermont": "Phil Scott",
+    "Virginia": "Abigail Spanberger",
+    "Washington": "Bob Ferguson",
+    "West Virginia": "Patrick Morrisey",
+    "Wisconsin": "Tony Evers",
+    "Wyoming": "Mark Gordon",
+    "District of Columbia": "Muriel Bowser"
+  }
+}
